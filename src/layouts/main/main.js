@@ -6,7 +6,7 @@ import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNaviga
 import Paper from 'material-ui/Paper';
 import { CircularProgress } from 'material-ui';
 import { Link, NavLink } from 'react-router-dom';
-import GridListExampleSingleLine from '../../components/GridListExampleSingleLine';
+import OneAskPlaza from './plaza'
 
 import icon_pathway from '../../images/icon_pathway.png';
 import icon_person from '../../images/icon_person.png';
@@ -255,7 +255,7 @@ class Main extends Component {
       if (this.state.tabSelect == 1)
         return (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            
+            <OneAskPlaza />
           </div>
         )
   }

@@ -72,17 +72,15 @@ const tilesData = [
  * This example demonstrates the horizontal scrollable single-line grid list of images.
  */
 const OneAskPlaza = () => (
-    <div>
-        <GridList style={styles.gridList} cols={2.2}>
-            {tilesData.map((tile) => (
-                <GridTile
-                    key={tile.img}
-                >
-                    <img src={tile.img} />
-                </GridTile>
-            ))}
-        </GridList>
-    </div>
+    <GridList style={styles.gridList} cols={2.2}>
+        {tilesData.map((tile) => (
+            <GridTile
+                key={tile.img}
+            >
+                <img src={tile.img} />
+            </GridTile>
+        ))}
+    </GridList>
 );
 
 export default OneAskPlaza;
