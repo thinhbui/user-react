@@ -26,7 +26,7 @@ export const actionCreators = {
     updateUser: (user) => {
         return { type: types.UPDATEUSER, payload: user }
     },
-    loginActions: (user) => {
+    login: (user) => {
         return { type: types.LOGIN, payload: user }
     },
     answering: (isAnswering) => {
