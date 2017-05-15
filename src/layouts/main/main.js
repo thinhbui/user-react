@@ -99,7 +99,8 @@ class Title extends Component {
 class SettingItem extends Component {
   render() {
     return (
-      <div style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 50, alignItems: 'center', borderBottom: this.props.borderBottom && '1px solid gray', borderTop: this.props.borderTop && '1px solid gray', }}>
+      <div onClick={this.props.handleUpdate}
+        style={{ display: 'flex', flexDirection: 'row', width: '100%', height: 50, alignItems: 'center', borderBottom: this.props.borderBottom && '1px solid gray', borderTop: this.props.borderTop && '1px solid gray', }}>
         <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <img src={ic_phone} alt="" /> </div>
         <div style={{ display: 'flex', flex: 6, borderBottom: '1px solid gray', height: '100%', alignItems: 'center', flexDirection: 'row' }}>
@@ -209,7 +210,7 @@ class Main extends Component {
 
     )
   }
-
+  
   renderTab() {
     if (this.state.tabSelect == 0)
       return (
@@ -383,15 +384,15 @@ class Main extends Component {
           <SettingItem name="Email" rightText="Haunsjkhafks@gmail.com" iconRight={true} borderBottom={true} />
 
           <div style={{ height: 20 }}></div>
-          <SettingItem name="Chia sẻ với bạn bè" iconRight={false} borderBottom={true} borderTop={true}/>
+          <SettingItem name="Chia sẻ với bạn bè" iconRight={false} borderBottom={true} borderTop={true} />
           <div style={{ height: 20 }}></div>
-          <SettingItem name="Cài đặt" iconRight={true} borderBottom={true} borderTop={true}/>
+          <SettingItem name="Cài đặt" iconRight={true} borderBottom={true} borderTop={true} />
           <div style={{ height: 20 }}></div>
-          <SettingItem name="Giới thiệu 1ASK" iconRight={true} borderTop={true}/>
+          <SettingItem name="Giới thiệu 1ASK" iconRight={true} borderTop={true} />
           <SettingItem name="Điều khoản & chính sách sử dụng" iconRight={true} />
           <SettingItem name="Gửi phản hồi" iconRight={true} borderBottom={true} />
           <div style={{ height: 20 }}></div>
-          <SettingItem name="Đăng xuất" iconRight={false} borderBottom={true} borderTop={true}/>
+          <SettingItem name="Đăng xuất" iconRight={false} borderBottom={true} borderTop={true} />
         </div>
       </div>
     )
@@ -411,4 +412,3 @@ class Main extends Component {
 }
 
 export default Main;
-
