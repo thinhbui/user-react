@@ -11,7 +11,23 @@ body {
     flex-direction: column;
     width: 100%;
 }
-
+.flex{
+    display: flex;
+    width: 100%;
+}
+.center{
+    justify-content: center;
+    align-items: center;
+}
+.direc-column{
+    flex-direction: column;
+}
+/*.input-payment::placehoder{
+    color: red
+}*/
+.direc-row{
+    flex-direction: row;
+}
 input::placeholder {
   color: rgb(215, 224, 224);
   font-size: 16px;
@@ -72,10 +88,10 @@ input::placeholder {
     display: flex;
     width: 30%;
     align-self: center;
-    height: 889px;
+    height: 951px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-width: 500px;
+    min-width: 640px;
     /*margin-left: 10%*/
 }

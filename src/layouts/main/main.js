@@ -5,15 +5,19 @@ import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import Badge from 'material-ui/Badge';
+import { Redirect } from 'react-router-dom';
 import { IconButton } from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import { CircularProgress } from 'material-ui';
 import { Link, NavLink } from 'react-router-dom';
 import OneAskPlaza from './plaza';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import Lesson, { Learn } from './lesson.js';
+import ReactPlayer from 'react-player';
+import Payment from './payment.js';
 
-import icon_pathway from '../../images/icon_pathway.png';
-import icon_person from '../../images/icon_person.png';
+import icon_pathway from '../../images/icon_pathway0.png';
+import icon_person from '../../images/icon_person0.png';
 import icon_question from '../../images/icon_question.png';
 import icon_pathway1 from '../../images/icon_pathway1.png';
 import icon_person1 from '../../images/icon_person1.png';
@@ -39,9 +43,12 @@ class CardView extends Component {
           subtitle="Toán"
           avatar='http://i3.kym-cdn.com/photos/images/facebook/000/101/771/1879f18e_e542_e1c6.jpg'
           style={{}}
+          actAsExpander={true}
         />
         <CardMedia
-          overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+
+          mediaStyle={{}}
+          style={{}}
         >
           <img src={avatar} />
         </CardMedia>
@@ -64,7 +71,7 @@ class Title extends Component {
       <div className="navigation top" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
         {!this.state.isSearch ?
           <div style={{ alignSelf: 'center', display: 'flex', flexDirection: 'row', width: '100%' }}>
-            <img src={logo_app} style={{ marginLeft: 10 }} />
+            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, cursor: 'pointer' }} />
             <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ color: 'white', fontWeight: 600, }}> {this.props.title} </div>
             </div>
@@ -75,7 +82,7 @@ class Title extends Component {
           </div>
           :
           <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
-            <img src={logo_app} style={{ marginLeft: 10, marginRight: 10 }} />
+            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, marginRight: 10, cursor: 'pointer' }} />
             <div style={{
               backgroundColor: 'rgb(0,141,147)',
               height: 40, borderStyle: 'none', borderRadius: 15,
@@ -106,7 +113,7 @@ class SettingItem extends Component {
         <div style={{ display: 'flex', flex: 6, borderBottom: '1px solid gray', height: '100%', alignItems: 'center', flexDirection: 'row' }}>
           <text style={{ flex: 2 }}>{this.props.name}</text>
           <div style={{ display: 'flex', justifyContent: 'flex-end', height: '100%', flex: 1, alignItems: 'center' }}>
-            <text style={{ color: 'gray', marginRight: 5 }}>/{this.props.rightText}</text>
+            <text style={{ color: 'gray', marginRight: 5 }}>{this.props.rightText}</text>
             {this.props.iconRight && <img src={ic_next} style={{ marginRight: 5 }} />}
           </div>
 
@@ -126,11 +133,27 @@ class Main extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      selectedIndex: 2,
+      selectedIndex: 0,
       tabSelect: 0,
       hasPathway: false,
       title: '1ASK plaza',
+      isHide: false,
+      isLearning: false
     }
+  }
+  hideBar = () => {
+    window.scrollY > this.prev ?
+      !this.state.isHide && this.setState({ isHide: true })
+      :
+      this.state.isHide && this.setState({ isHide: false })
+
+    this.prev = window.scrollY;
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', this.hideBar);
+  }
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.hideBar);
   }
   select = (index) => {
     this.setState({ selectedIndex: index });
@@ -144,12 +167,12 @@ class Main extends Component {
         title: '1ASK plaza'
       })
     )
-    console.log(`selectedIndex ${this.state.selectedIndex}`, `selectedIndex ${this.state.title}`)
+    // console.log(`selectedIndex ${this.state.selectedIndex}`, `selectedIndex ${this.state.title}`)
   };
   selectTab = (index) => { this.setState({ tabSelect: index }) }
   renderNavigationButtom() {
     return (
-      <div className="navigation buttom">
+      <div className="navigation buttom" >
         <Paper zDepth={1}>
           <BottomNavigation selectedIndex={this.state.selectedIndex}>
             <BottomNavigationItem className="BottomNavigationItem"
@@ -210,11 +233,12 @@ class Main extends Component {
 
     )
   }
-  
+
   renderTab() {
     if (this.state.tabSelect == 0)
       return (
         <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+          <CardView />
           <CardView />
         </div >
       )
@@ -236,7 +260,10 @@ class Main extends Component {
                 <img src={study} />
                 <div style={{}}>Find Pathway you are interested in and enroll</div>
               </div>
-              <button style={{ marginBottom: 30 }} className="midle-button" >Go to 1ASK Plaza</button>
+              <button style={{ marginBottom: 30, cursor: 'pointer' }} className="midle-button" onClick={() => {
+                this.setState({ tabSelect: 1 });
+              }}>
+                Go to 1ASK Plaza</button>
             </div>
             <div style={{ display: 'flex', flex: 1 }}>
 
@@ -244,6 +271,7 @@ class Main extends Component {
           </div >
           :
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+            {this.state.isLearning && <Redirect to="/learn" />}
             <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
               <div style={{
                 display: 'flex', height: 300, flexDirection: 'row',
@@ -259,12 +287,8 @@ class Main extends Component {
                     size={120}
                     thickness={5}> 84</CircularProgress>
                 </div>
-                <div style={{
-                  display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column'
-                }}>
-                  <div style={{
-                    display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'
-                  }}>
+                <div style={{  display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column' }}>
+                  <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
                     <span style={{
                       display: 'flex', justifyContent: 'center',
                       alignItems: 'flex-start', fontWeight: 580, fontSize: 18
@@ -288,7 +312,7 @@ class Main extends Component {
                   <div style={{
                     display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
                   }}>
-                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button">Learning now</button>
+                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
                   </div>
                 </div>
               </div>
@@ -336,7 +360,7 @@ class Main extends Component {
                   <div style={{
                     display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
                   }}>
-                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button">Learning now</button>
+                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
                   </div>
                 </div>
               </div>
@@ -347,7 +371,9 @@ class Main extends Component {
                 <img src={study} />
                 <div style={{}}>Find Pathway you are interested in and enroll</div>
               </div>
-              <button className="midle-button" >Go to 1ASK Plaza</button>
+              <button className="midle-button" onClick={() => {
+                this.setState({ tabSelect: 1 });
+              }}>Go to 1ASK Plaza</button>
             </div>
             <div style={{ display: 'flex', flex: .1 }}>
 
@@ -379,9 +405,10 @@ class Main extends Component {
           <text style={{ color: 'rgb(249,163,70', fontWeight: 600, marginLeft: 10 }}> 20 Session</text>
         </div>
         <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%' }}>
+
           <SettingItem name="Họ tên" rightText="/Haunsjkhafks" iconRight={true} />
-          <SettingItem name="Điện thoại" rightText="23412544" iconRight={true} />
-          <SettingItem name="Email" rightText="Haunsjkhafks@gmail.com" iconRight={true} borderBottom={true} />
+          <SettingItem name="Điện thoại" rightText="/23412544" iconRight={true} />
+          <SettingItem name="Email" rightText="/Haunsjkhafks@gmail.com" iconRight={true} borderBottom={true} />
 
           <div style={{ height: 20 }}></div>
           <SettingItem name="Chia sẻ với bạn bè" iconRight={false} borderBottom={true} borderTop={true} />
@@ -400,12 +427,17 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
-        <Title title={this.state.title} />
+        {/*<Title title={this.state.title} logoClick={() => {
+          this.setState({ selectedIndex: 0, tabSelect: 0 });
+          console.log('click')
+        }} />
         {this.state.selectedIndex !== 2 && this.renderTabButton()}
         {this.state.selectedIndex == 0 && this.renderTab()}
         {this.state.selectedIndex == 1 && this.renderTab1()}
         {this.state.selectedIndex == 2 && this.renderTab2()}
-        {this.renderNavigationButtom()}
+        {this.renderNavigationButtom()}*/}
+        {/*<Learn />*/}
+        <Payment />
       </div>
     );
   }

@@ -1,0 +1,10 @@
+input::placeholder {
+  color: gray;
+  padding-left: 120;
+}
+input { text-align: center; }
+.button-payment{
+    background: linear-gradient(to right, rgb(0, 178, 185) , rgb(63, 181, 110));
+    color: white;
+    font-size: 16px;
+}

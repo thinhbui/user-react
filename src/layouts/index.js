@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Main from './main/main.js'
+import Main from './main/main.js';
+import Lesson from './main/lesson.js';
 import Login from './login/login.js';
-
 export default class App extends Component {
     render() {
         return (
@@ -12,6 +12,7 @@ export default class App extends Component {
                     <Switch>
                         <Route exact path='/' component={Main} />
                         <Route path='/login' component={Login} />
+                        <Route path='/learn' component={Lesson} />
                         <Route render={() => {
                             return (<h1>Page Not Found</h1>)
                         }} />

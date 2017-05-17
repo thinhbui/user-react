@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { actionCreators } from '../../reducer/reducer';
 
 import bg from '../../images/bg5.png';
-import logo from '../../images/logoapp_User@2x.png';
+import logo from '../../images/logoapp_User.png';
 import facebook from '../../images/facebook.png';
 import google from '../../images/google.png';
 
