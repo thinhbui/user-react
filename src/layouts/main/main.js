@@ -37,22 +37,22 @@ import ic_next from '../../images/ic_next1.png';
 class CardView extends Component {
   render() {
     return (
-      <Card>
+      <Card style={{ width: 600, marginTop: 20, border: '1px solid #edeff2' }}>
         <CardHeader
           title="Đỗ Thị Ngọc Mai"
           subtitle="Toán"
           avatar='http://i3.kym-cdn.com/photos/images/facebook/000/101/771/1879f18e_e542_e1c6.jpg'
-          style={{}}
+          style={{ width: 600 }}
           actAsExpander={true}
         />
         <CardMedia
 
-          mediaStyle={{}}
-          style={{}}
+          mediaStyle={{ width: 600 }}
+          style={{ width: 600 }}
         >
           <img src={avatar} />
-        </CardMedia>
-        <CardTitle title="Card title" subtitle="Card subtitle" />
+        </CardMedia >
+        <CardTitle title="Giúp e bài này với" subtitle="Phân tích nụ cười của Yao Ming" />
 
       </Card>
     )
@@ -68,10 +68,13 @@ class Title extends Component {
   }
   render() {
     return (
-      <div className="navigation top" style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+      <div style={{
+        display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', height: 80,
+        backgroundColor: 'rgb(0, 178, 185)'
+      }}>
         {!this.state.isSearch ?
           <div style={{ alignSelf: 'center', display: 'flex', flexDirection: 'row', width: '100%' }}>
-            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, cursor: 'pointer' }} />
+            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, cursor: 'pointer', height: 50 }} />
             <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
               <div style={{ color: 'white', fontWeight: 600, }}> {this.props.title} </div>
             </div>
@@ -146,7 +149,6 @@ class Main extends Component {
       !this.state.isHide && this.setState({ isHide: true })
       :
       this.state.isHide && this.setState({ isHide: false })
-
     this.prev = window.scrollY;
   }
   componentDidMount() {
@@ -237,7 +239,7 @@ class Main extends Component {
   renderTab() {
     if (this.state.tabSelect == 0)
       return (
-        <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
           <CardView />
           <CardView />
         </div >
@@ -250,144 +252,7 @@ class Main extends Component {
           </div>
         )
   }
-  renderTab1() {
-    if (this.state.tabSelect == 0)
-      return (
-        this.state.hasPathway ?
-          <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <img src={study} />
-                <div style={{}}>Find Pathway you are interested in and enroll</div>
-              </div>
-              <button style={{ marginBottom: 30, cursor: 'pointer' }} className="midle-button" onClick={() => {
-                this.setState({ tabSelect: 1 });
-              }}>
-                Go to 1ASK Plaza</button>
-            </div>
-            <div style={{ display: 'flex', flex: 1 }}>
 
-            </div>
-          </div >
-          :
-          <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            {this.state.isLearning && <Redirect to="/learn" />}
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-              <div style={{
-                display: 'flex', height: 300, flexDirection: 'row',
-                border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3
-              }}>
-                <div style={{
-                  flex: 1,
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  <CircularProgress
-                    mode="determinate"
-                    value={50}
-                    size={120}
-                    thickness={5}> 84</CircularProgress>
-                </div>
-                <div style={{  display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column' }}>
-                  <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
-                    <span style={{
-                      display: 'flex', justifyContent: 'center',
-                      alignItems: 'flex-start', fontWeight: 580, fontSize: 18
-                    }}>3 Tuần để thành cao thủ tích phân</span>
-                    <span style={{
-                      display: 'flex', justifyContent: 'center',
-                      alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 2
-                    }}>Giảng viên: Nguyễn Ngọc Đức</span>
-                    <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12 }}>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_video} /> 20 videos
-                      </div>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_voice} /> 10 voices
-                      </div>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_document} /> 80 documents
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{
-                    display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
-                  }}>
-                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
-                  </div>
-                </div>
-              </div>
-              <div style={{ height: 20 }}> </div>
-              <div style={{
-                display: 'flex', height: 300, flexDirection: 'row',
-                border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3
-              }}>
-                <div style={{
-                  flex: 1,
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  <CircularProgress
-                    mode="determinate"
-                    value={50}
-                    size={120}
-                    thickness={5}> 84</CircularProgress>
-                </div>
-                <div style={{
-                  display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column'
-                }}>
-                  <div style={{
-                    display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'
-                  }}>
-                    <span style={{
-                      display: 'flex', justifyContent: 'center',
-                      alignItems: 'flex-start', fontWeight: 580, fontSize: 18
-                    }}>3 Tuần để thành cao thủ tích phân</span>
-                    <span style={{
-                      display: 'flex', justifyContent: 'center',
-                      alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 2
-                    }}>Giảng viên: Nguyễn Ngọc Đức</span>
-                    <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12 }}>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_video} /> 20 videos
-                      </div>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_voice} /> 10 voices
-                      </div>
-                      <div style={{ margin: 5 }}>
-                        <img src={ic_document} /> 80 documents
-                      </div>
-                    </div>
-                  </div>
-                  <div style={{
-                    display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
-                  }}>
-                    <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-            <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-              <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-                <img src={study} />
-                <div style={{}}>Find Pathway you are interested in and enroll</div>
-              </div>
-              <button className="midle-button" onClick={() => {
-                this.setState({ tabSelect: 1 });
-              }}>Go to 1ASK Plaza</button>
-            </div>
-            <div style={{ display: 'flex', flex: .1 }}>
-
-            </div>
-          </div >
-      )
-    else
-      if (this.state.tabSelect == 1)
-        return (
-          <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-            <OneAskPlaza />
-          </div>
-        )
-  }
   renderTab2() {
     return (
       <div style={{ display: 'flex', flex: 1, flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
@@ -430,17 +295,149 @@ class Main extends Component {
         {/*<Title title={this.state.title} logoClick={() => {
           this.setState({ selectedIndex: 0, tabSelect: 0 });
           console.log('click')
-        }} />
-        {this.state.selectedIndex !== 2 && this.renderTabButton()}
+        }} />*/}
+        {/*{this.state.selectedIndex !== 2 && this.renderTabButton()}*/}
         {this.state.selectedIndex == 0 && this.renderTab()}
-        {this.state.selectedIndex == 1 && this.renderTab1()}
-        {this.state.selectedIndex == 2 && this.renderTab2()}
-        {this.renderNavigationButtom()}*/}
+        {/*{/*{this.state.selectedIndex == 1 && this.renderTab1()}*/}
+        {/*{this.state.selectedIndex == 2 && this.renderTab2()}*/}
+        {/*{this.renderNavigationButtom()}*/}
         {/*<Learn />*/}
-        <Payment />
+        {/*<Payment />*/}
       </div>
     );
   }
 }
+export class Document extends Component {
+  render() {
+    // if (this.state.tabSelect == 0)
+    return (
+      // <div className="flex">
+      <div style={{
+        display: 'flex', flex: 1, flexDirection: 'column',
+        width: '100%', alignItems: 'center'
+      }}>
+        {/*{this.state.isLearning && <Redirect to="/learn" />}*/}
+        <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+          <div style={{
+            display: 'flex', height: 220, flexDirection: 'row',
+            border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3, width: 600
+          }}>
+            <div style={{
+              flex: 1,
+              display: 'flex', justifyContent: 'center', alignItems: 'center'
+            }}>
+              <CircularProgress
+                mode="determinate"
+                value={50}
+                size={120}
+                thickness={5}> 84</CircularProgress>
+            </div>
+            <div style={{ display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column', width: '100%' }}>
+              <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column', width: '100%' }}>
+                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', fontWeight: 580, fontSize: 18 }}>3 Tuần để thành cao thủ tích phân</span>
+                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 5 }}>Giảng viên: Nguyễn Ngọc Đức</span>
+                <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12, width: '80%' }}>
+                  <div className="item-lesson" style={{ margin: 5, flex: 1 }}>
+                    <img src={ic_video} style={{ marginRight: 10 }} /> 20 videos
+                  </div>
+                  <div className="item-lesson" style={{ margin: 5, flex: 1 }}>
+                    <img src={ic_voice} style={{ marginRight: 10 }} /> 10 voices
+                  </div>
+                  <div className="item-lesson" style={{ margin: 5, flex: 1.2 }}>
+                    <img src={ic_document} style={{ marginRight: 10 }} /> 80 documents
+                  </div>
+                </div>
+              </div>
+              <div style={{
+                display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
+              }}>
+                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
+              </div>
+            </div>
+          </div>
+          <div style={{ height: 20 }}> </div>
+          <div style={{
+            display: 'flex', height: 300, flexDirection: 'row',
+            border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3
+          }}>
+            <div style={{
+              flex: 1,
+              display: 'flex', justifyContent: 'center', alignItems: 'center'
+            }}>
+              <CircularProgress
+                mode="determinate"
+                value={50}
+                size={120}
+                thickness={5}> 84</CircularProgress>
+            </div>
+            <div style={{
+              display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column'
+            }}>
+              <div style={{
+                display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'
+              }}>
+                <span style={{
+                  display: 'flex', justifyContent: 'center',
+                  alignItems: 'flex-start', fontWeight: 580, fontSize: 18
+                }}>3 Tuần để thành cao thủ tích phân</span>
+                <span style={{
+                  display: 'flex', justifyContent: 'center',
+                  alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 2
+                }}>Giảng viên: Nguyễn Ngọc Đức</span>
+                <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12 }}>
+                  <div className="item-lesson" style={{ margin: 5 }}>
+                    <img src={ic_video} /> 20 videos
+                  </div>
+                  <div className="item-lesson" style={{ margin: 5 }}>
+                    <img src={ic_voice} /> 10 voices
+                  </div>
+                  <div className="item-lesson" style={{ margin: 5 }}>
+                    <img src={ic_document} /> 80 documents
+                  </div>
+                </div>
+              </div>
+              <div style={{
+                display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
+              }}>
+                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
+              </div>
+            </div>
+          </div>
 
+        </div>
+        <div style={{ marginTop: 20, display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <img src={study} style={{ height: 120 }} />
+            <div style={{}}>Find Pathway you are interested in and enroll</div>
+          </div>
+          <button className="midle-button" onClick={() => {
+            this.setState({ tabSelect: 1 });
+          }}>Go to 1ASK Plaza</button>
+        </div>
+        <div style={{ display: 'flex', flex: .1 }}>
+
+        </div>
+      </div >
+      // </div>
+
+
+    )
+  }
+}
 export default Main;
+// this.state.hasPathway ?
+{/*<div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
+        <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+          <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
+            <img src={study} style={{ height: 100 }} />
+            <div style={{}}>Find Pathway you are interested in and enroll</div>
+          </div>
+          <button style={{ marginBottom: 30, cursor: 'pointer' }} className="midle-button" onClick={() => {
+            this.setState({ tabSelect: 1 });
+          }}>
+            Go to 1ASK Plaza</button>
+        </div>
+        <div style={{ display: 'flex', flex: 1 }}>
+
+        </div>
+      </div >*/}

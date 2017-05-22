@@ -1,61 +1,7 @@
-body {
-  margin:0;
-  padding: 0;
-  font-family: sans-serif;
-  display: flex;
-  justify-content: center;
+body{
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
 }
-.App{
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-.flex{
-    display: flex;
-    width: 100%;
-}
-.center{
-    justify-content: center;
-    align-items: center;
-}
-.direc-column{
-    flex-direction: column;
-}
-/*.input-payment::placehoder{
-    color: red
-}*/
-.direc-row{
-    flex-direction: row;
-}
-input::placeholder {
-  color: rgb(215, 224, 224);
-  font-size: 16px;
-  margin-left: 10px;
-}
-.navigation{
-    width: 100%;
-}
-.top{
-  width: 100%;
-  height: 80px;
-  background-color: rgb(0, 178, 185);
-}
-.buttom{
-     height: 70px;
-     align-self: flex-end;
-     border: 1px solid rgb(172, 172, 172)
-}
-.main{
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.img{
-    align-self: center;
-}
+
 .midle-button{
     border-radius: 10px;
     border: 1px solid transparent;
@@ -66,10 +12,6 @@ input::placeholder {
     color: white;
     height: 38px;
     width: 300px;
-}
-.flex{
-    display: flex;
-    flex-direction: column;
 }
 .title{
     height: 80px;
@@ -84,14 +26,53 @@ input::placeholder {
     align-items: center;
     flex-direction: column
 }
-.container{
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+.active{
+    font-weight: bold;
+}
+a{
+    text-decoration: none;
+}
+ul{ 
+    padding: 0;
+}
+li{
+ list-style-type: none;
+ margin-right: 15px;
+}
+.nav{
     display: flex;
-    width: 30%;
-    align-self: center;
-    height: 951px;
-    flex-direction: column;
+    border-bottom: 1px solid rgba(0,0,0,.0975);
+    height: 77px;
+    background-color: #edeff2;
+    align-items: center;
+}
+.nav li img{
+    height: 30px;
+    margin-left: 15px;
+}
+input::placeholder{
+    font-size: 14px;
+    color: 'gray';
+}
+input{
+    width: 200px;
+
+}
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.item-lesson{
+    display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 640px;
-    /*margin-left: 10%*/
+}
+.item-lesson img{
+    height: 20px;
 }
