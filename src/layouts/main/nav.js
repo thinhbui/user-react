@@ -17,7 +17,6 @@ class Nav extends React.Component {
         }
     }
     render() {
-        console.log(this.state.page)
         return (
             <div className='container'>
                 <ul className="nav">
@@ -50,10 +49,21 @@ class Nav extends React.Component {
                         </li>
                         <li style={{ flex: 1 }}>
                             <NavLink activeClassName='active' to='/person'>
-                                {this.state.page == 'person' ?
-                                    <img src={icon_person1} onClick={() => this.setState({ page: 'person' })} />
-                                    :
-                                    <img src={icon_person} onClick={() => this.setState({ page: 'person' })} />
+                                {
+                                    this.state.page == 'person' ?
+                                        <img src={icon_person1} onClick={() => this.setState({ page: 'person' })} />
+                                        :
+                                        <img src={icon_person} onClick={() => this.setState({ page: 'person' })} />
+                                }
+                            </NavLink>
+                        </li>
+                        <li style={{ flex: 1 }}>
+                            <NavLink activeClassName='active' to='/plaza'>
+                                {
+                                    this.state.page == 'plaza' ?
+                                        <img src={icon_person1} onClick={() => this.setState({ page: 'plaza' })} />
+                                        :
+                                        <img src={icon_person} onClick={() => this.setState({ page: 'plaza' })} />
                                 }
                             </NavLink>
                         </li>

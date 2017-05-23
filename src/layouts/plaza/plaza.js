@@ -45,11 +45,15 @@ const tilesData = [
 class OneAskPlaza extends Component {
     render() {
         return (
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-                <div style={{ height: 100 }}>
-                    <img src={banner} style={{ width: 640, height: 100 }} />
+            <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', justifyContent: 'center' }}>
+                <div style={{ height: 100, alignSelf: 'center' }}>
+                    <img src={banner} style={{ width: 600, height: 100 }} />
                 </div>
                 <ObjectItem name="Toán học" />
+                <ObjectItem name="Hóa học" />
+                <ObjectItem name="Vật lý" />
+                <ObjectItem name="Sinh học" />
+                <ObjectItem name="Hóa học" />
                 <ObjectItem name="Hóa học" />
             </div>
         )
@@ -59,11 +63,11 @@ class OneAskPlaza extends Component {
 class ObjectItem extends Component {
     render() {
         return (
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', width: 600, alignSelf: 'center', border: '1px solid rgba(0,0,0,.0975)' }}>
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <div>
                         <div style={{ height: 40, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <img src={tab} style={{ alignSelf: 'flex-start' }} />
+                            <img src={tab} style={{ alignSelf: 'flex-start', height: 30 }} />
                             <text style={{ color: 'white', position: 'absolute', marginLeft: 15 }}>{this.props.name}</text>
                         </div>
                     </div>

@@ -8,9 +8,9 @@ import Badge from 'material-ui/Badge';
 import { Redirect } from 'react-router-dom';
 import { IconButton } from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
-import { CircularProgress } from 'material-ui';
+
 import { Link, NavLink } from 'react-router-dom';
-import OneAskPlaza from './plaza';
+import OneAskPlaza from '../plaza/plaza.js';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import Lesson, { Learn } from './lesson.js';
 import ReactPlayer from 'react-player';
@@ -23,10 +23,8 @@ import icon_pathway1 from '../../images/icon_pathway1.png';
 import icon_person1 from '../../images/icon_person1.png';
 import icon_question1 from '../../images/icon_question1.png';
 import logo_app from '../../images/logoapp_User.png';
-import study from '../../images/study.png';
 import ic_video from '../../images/ic_video.png';
 import ic_voice from '../../images/ic_voice.png';
-import ic_document from '../../images/ic_document.png';
 import ic_notification from '../../images/ic_notification1.png';
 import ic_search from '../../images/ic_search0.png';
 import avatar from '../../images/avatar.png';
@@ -292,138 +290,12 @@ class Main extends Component {
   render() {
     return (
       <div className="App">
-        {/*<Title title={this.state.title} logoClick={() => {
-          this.setState({ selectedIndex: 0, tabSelect: 0 });
-          console.log('click')
-        }} />*/}
-        {/*{this.state.selectedIndex !== 2 && this.renderTabButton()}*/}
-        {this.state.selectedIndex == 0 && this.renderTab()}
-        {/*{/*{this.state.selectedIndex == 1 && this.renderTab1()}*/}
-        {/*{this.state.selectedIndex == 2 && this.renderTab2()}*/}
-        {/*{this.renderNavigationButtom()}*/}
-        {/*<Learn />*/}
-        {/*<Payment />*/}
+        {this.renderTab()}
       </div>
     );
   }
 }
-export class Document extends Component {
-  render() {
-    // if (this.state.tabSelect == 0)
-    return (
-      // <div className="flex">
-      <div style={{
-        display: 'flex', flex: 1, flexDirection: 'column',
-        width: '100%', alignItems: 'center'
-      }}>
-        {/*{this.state.isLearning && <Redirect to="/learn" />}*/}
-        <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-          <div style={{
-            display: 'flex', height: 220, flexDirection: 'row',
-            border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3, width: 600
-          }}>
-            <div style={{
-              flex: 1,
-              display: 'flex', justifyContent: 'center', alignItems: 'center'
-            }}>
-              <CircularProgress
-                mode="determinate"
-                value={50}
-                size={120}
-                thickness={5}> 84</CircularProgress>
-            </div>
-            <div style={{ display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column', width: '100%' }}>
-              <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column', width: '100%' }}>
-                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', fontWeight: 580, fontSize: 18 }}>3 Tuần để thành cao thủ tích phân</span>
-                <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 5 }}>Giảng viên: Nguyễn Ngọc Đức</span>
-                <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12, width: '80%' }}>
-                  <div className="item-lesson" style={{ margin: 5, flex: 1 }}>
-                    <img src={ic_video} style={{ marginRight: 10 }} /> 20 videos
-                  </div>
-                  <div className="item-lesson" style={{ margin: 5, flex: 1 }}>
-                    <img src={ic_voice} style={{ marginRight: 10 }} /> 10 voices
-                  </div>
-                  <div className="item-lesson" style={{ margin: 5, flex: 1.2 }}>
-                    <img src={ic_document} style={{ marginRight: 10 }} /> 80 documents
-                  </div>
-                </div>
-              </div>
-              <div style={{
-                display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
-              }}>
-                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
-              </div>
-            </div>
-          </div>
-          <div style={{ height: 20 }}> </div>
-          <div style={{
-            display: 'flex', height: 300, flexDirection: 'row',
-            border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3
-          }}>
-            <div style={{
-              flex: 1,
-              display: 'flex', justifyContent: 'center', alignItems: 'center'
-            }}>
-              <CircularProgress
-                mode="determinate"
-                value={50}
-                size={120}
-                thickness={5}> 84</CircularProgress>
-            </div>
-            <div style={{
-              display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column'
-            }}>
-              <div style={{
-                display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column'
-              }}>
-                <span style={{
-                  display: 'flex', justifyContent: 'center',
-                  alignItems: 'flex-start', fontWeight: 580, fontSize: 18
-                }}>3 Tuần để thành cao thủ tích phân</span>
-                <span style={{
-                  display: 'flex', justifyContent: 'center',
-                  alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 2
-                }}>Giảng viên: Nguyễn Ngọc Đức</span>
-                <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12 }}>
-                  <div className="item-lesson" style={{ margin: 5 }}>
-                    <img src={ic_video} /> 20 videos
-                  </div>
-                  <div className="item-lesson" style={{ margin: 5 }}>
-                    <img src={ic_voice} /> 10 voices
-                  </div>
-                  <div className="item-lesson" style={{ margin: 5 }}>
-                    <img src={ic_document} /> 80 documents
-                  </div>
-                </div>
-              </div>
-              <div style={{
-                display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column'
-              }}>
-                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
-              </div>
-            </div>
-          </div>
 
-        </div>
-        <div style={{ marginTop: 20, display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <img src={study} style={{ height: 120 }} />
-            <div style={{}}>Find Pathway you are interested in and enroll</div>
-          </div>
-          <button className="midle-button" onClick={() => {
-            this.setState({ tabSelect: 1 });
-          }}>Go to 1ASK Plaza</button>
-        </div>
-        <div style={{ display: 'flex', flex: .1 }}>
-
-        </div>
-      </div >
-      // </div>
-
-
-    )
-  }
-}
 export default Main;
 // this.state.hasPathway ?
 {/*<div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
