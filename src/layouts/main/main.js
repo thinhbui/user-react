@@ -12,10 +12,12 @@ import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import { Link, NavLink } from 'react-router-dom';
 import OneAskPlaza from '../plaza/plaza.js';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import Lesson, { Learn } from './lesson.js';
+// import Lesson, { Learn } from './lesson.js';
 import ReactPlayer from 'react-player';
-import Payment from './payment.js';
+import { DetailItem } from '../plaza/plaza.js'
+// import Payment from './payment.js';
 
+import icon_profile from '../../images/profile.png';
 import icon_pathway from '../../images/icon_pathway0.png';
 import icon_person from '../../images/icon_person0.png';
 import icon_question from '../../images/icon_question.png';
@@ -32,14 +34,20 @@ import decor from '../../images/decor.png';
 import ic_phone from '../../images/icon_phone.png';
 import ic_next from '../../images/ic_next1.png';
 
-class CardView extends Component {
+import { connect } from 'react-redux';
+import { actionCreators } from '../../reducer/reducer';
+
+const mapStateToProps = (state) => ({
+  isLogin: state.isLogin
+})
+export class CardView extends Component {
   render() {
     return (
       <Card style={{ width: 600, marginTop: 20, border: '1px solid #edeff2' }}>
         <CardHeader
           title="Đỗ Thị Ngọc Mai"
           subtitle="Toán"
-          avatar='http://i3.kym-cdn.com/photos/images/facebook/000/101/771/1879f18e_e542_e1c6.jpg'
+          avatar={icon_profile}
           style={{ width: 600 }}
           actAsExpander={true}
         />
@@ -56,54 +64,6 @@ class CardView extends Component {
     )
   }
 }
-
-class Title extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isSearch: false,
-    };
-  }
-  render() {
-    return (
-      <div style={{
-        display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', height: 80,
-        backgroundColor: 'rgb(0, 178, 185)'
-      }}>
-        {!this.state.isSearch ?
-          <div style={{ alignSelf: 'center', display: 'flex', flexDirection: 'row', width: '100%' }}>
-            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, cursor: 'pointer', height: 50 }} />
-            <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-              <div style={{ color: 'white', fontWeight: 600, }}> {this.props.title} </div>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <img src={ic_notification} style={{ width: 30, height: 30, marginRight: 10, cursor: 'pointer' }} />
-              <img src={ic_search} style={{ width: 30, height: 30, marginRight: 10, cursor: 'pointer' }} onClick={() => { this.setState({ isSearch: !this.state.isSearch }) }} />
-            </div>
-          </div>
-          :
-          <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', width: '100%', justifyContent: 'center' }}>
-            <img onClick={this.props.logoClick} src={logo_app} style={{ marginLeft: 10, marginRight: 10, cursor: 'pointer' }} />
-            <div style={{
-              backgroundColor: 'rgb(0,141,147)',
-              height: 40, borderStyle: 'none', borderRadius: 15,
-              width: '90%', display: 'flex',
-            }}>
-              <input type="text" placeholder="  Search"
-                style={{
-                  backgroundColor: 'rgb(0,141,147)',
-                  height: 38, borderStyle: 'none', borderRadius: 15,
-                  width: '90%', alignSelf: 'center', color: 'white', fontSize: 16
-                }} />
-              <img src={ic_search} style={{ marginTop: 5, width: 30, height: 30, marginRight: 10, cursor: 'pointer' }} onClick={() => { this.setState({ isSearch: !this.state.isSearch }) }} />
-            </div>
-          </div>
-        }
-      </div>
-    )
-  }
-}
-
 class SettingItem extends Component {
   render() {
     return (
@@ -123,13 +83,7 @@ class SettingItem extends Component {
     )
   }
 }
-class Update extends Component {
-  render() {
-    return (
-      <Title title={this.props.title} />
-    )
-  }
-}
+
 class Main extends Component {
   constructor(props) {
     super(props)
@@ -289,14 +243,16 @@ class Main extends Component {
   }
   render() {
     return (
-      <div className="App">
-        {this.renderTab()}
+      <div> {this.renderTab()}
+        {/*{this.props.isLogin && <Redirect to="/login" />}*/}
       </div>
+
+      // <DetailItem />
     );
   }
 }
 
-export default Main;
+export default connect(mapStateToProps)(Main)
 // this.state.hasPathway ?
 {/*<div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
         <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>

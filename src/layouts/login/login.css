@@ -1,18 +1,15 @@
 .button-facebook{
     display: inline-block;
-    background: #d14836;
+    background: #3897f0;
     color: #fff;
-    width: 400px;
+    width: 200px;
     padding-top: 10px;
     padding-bottom: 10px;
-    border-radius: 20px;
+    border-radius: 5px;
     position: relative;
-    border: '0px solid transparent';
+    border-style: none;
+    height: 35px;
     font-size: 16px;
-    font-weight: bold;
     font-family: Roboto;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(65,94,174)), to(rgb(63,171,181)));
-    background-image: -webkit-linear-gradient(right, rgb(65,94,174), rgb(63,171,181));
-    background-image: -moz-linear-gradient(right, rgb(65,94,174), rgb(63,171,181));
-    background-image: linear-gradient(to right, rgb(65,94,174), rgb(63,171,181));
+
 }

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './payment.css';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 import ic_video from '../../images/ic_video.png';
 import ic_voice from '../../images/ic_voice.png';
@@ -17,9 +19,13 @@ export default class Payment extends Component {
         super(props);
         this.state = {
             infoBank: false,
-            infoPhone: false
+            infoPhone: false,
+            value: 1
         }
     }
+
+    handleChange = (event, index, value) => this.setState({ value });
+
     handleClickBank = () => {
         this.setState({ infoBank: !this.state.infoBank });
         console.log(this.state.infoBank)
@@ -30,8 +36,8 @@ export default class Payment extends Component {
     }
     render() {
         return (
-            <div className="App" style={{ alignItems: 'center', color: 'gray' }}>
-                <div style={{ display: 'flex', height: 60, flexDirection: 'row', width: '100%', backgroundColor: 'rgb(0, 178, 185)' }}>
+            <div className="container" style={{ color: 'gray', display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
+                <div style={{ display: 'flex', height: 60, flexDirection: 'row', width: 600, backgroundColor: 'rgb(0, 178, 185)' }}>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img src={ic_cancel} style={{ cursor: 'pointer', width: 30, height: 30 }} onClick={() => this.setState({ back: true })} />
                     </div>
@@ -41,14 +47,14 @@ export default class Payment extends Component {
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>  </div>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>  </div>
                 </div >
-                <div style={{ display: 'flex', flexDirection: 'column', width: '80%', alignItems: 'center', }}>
+                <div style={{ display: 'flex', flexDirection: 'column', width: 600, alignItems: 'center', }}>
                     <div style={{ display: 'flex', color: 'rgb(0, 178, 185)', height: 40, alignItems: 'center', fontWeight: 'bold' }}>CÁM ƠN BẠN ĐÃ ĐĂNG KÝ KHÓA HỌC</div>
                     <div style={{ height: 40, textAlign: 'center', color: 'gray' }}>Xin chào <span style={{ fontWeight: 'bold', color: 'black' }}>Ngọc Mai</span>, chúng tôi đã xác nhận khóa học của bạn, chắc chắn khóa học sẽ mang lại thật nhiều kiến thức bổ ích dành cho bạn</div>
-                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 110, marginTop: 15 }}>
-                        <div style={{ fontSize: 14, marginLeft: 10, position: 'absolute', backgroundColor: 'white', marginTop: -10 }}>Thông tin đơn hàng:</div>
-                        <div style={{ border: '1px solid gray', display: 'flex', flexDirection: 'row', width: '100%', flex: 1 }}>
-                            <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                                <img src={avatar} style={{ width: 80, height: 80, borderRadius: 10 }} />
+                    <div style={{ display: 'flex', flexDirection: 'column', width: '100%', height: 130, marginTop: 15, alignItems: 'center' }}>
+                        <div style={{ fontSize: 14, marginLeft: 40, position: 'absolute', backgroundColor: 'white', marginTop: -10, alignSelf: 'flex-start' }}>Thông tin đơn hàng:</div>
+                        <div style={{ border: '1px solid gray', display: 'flex', flexDirection: 'row', width: '90%', flex: 1 }}>
+                            <div style={{ flex: 1.5, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                                <img src={avatar} style={{ width: 100, height: 100, borderRadius: 10 }} />
                             </div>
                             <div style={{ display: 'flex', flex: 4, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column' }}>
                                 <span style={{
@@ -74,9 +80,9 @@ export default class Payment extends Component {
                         </div>
                     </div>
 
-                    <input type="text" style={{ height: 40, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Mã khuyến mãi" />
-                    <input type="text" style={{ height: 40, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Số điện thoại kèm mã" />
-                    <button className="button-payment" style={{ height: 40, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} >Xác minh mã khuyến mãi</button>
+                    <input type="text" style={{ height: 50, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Mã khuyến mãi" />
+                    <input type="text" style={{ height: 50, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Số điện thoại kèm mã" />
+                    <button className="button-payment" style={{ height: 50, width: '80%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} >Xác minh mã khuyến mãi</button>
                     <div style={{ display: 'flex', alignSelf: 'flex-start', marginTop: 30, flexDirection: 'column', width: '100%', fontWeight: 'bold' }}>
                         <span style={{ position: 'absolute', backgroundColor: 'white', marginTop: -16 }}>Chi tiết đơn hàng</span>
                         <div style={{ display: 'flex', borderTop: '1px solid gray', borderBottom: '1px solid gray', width: '100%', height: 100, justifyContent: 'center', flexDirection: 'column' }}>
@@ -150,7 +156,7 @@ export default class Payment extends Component {
                     }
                     {this.state.infoPhone ?
                         <div style={{
-                            display: 'flex', flexDirection: 'column', height: 300, width: '100%', alignItems: 'center',
+                            display: 'flex', flexDirection: 'column', height: 350, width: '100%', alignItems: 'center',
                             border: '1px solid rgb(0,178,185)', borderRadius: 10, marginTop: 10
                         }}>
                             <div onClick={this.handleClickPhone}
@@ -172,12 +178,22 @@ export default class Payment extends Component {
                                     <div style={{ flex: 1 }}></div>
                                     <span style={{ color: 'rgb(0,178,185)', fontWeight: 'bold' }}>20.000 vnđ</span>
                                 </div>
-                                <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 10, marginTop: 10 }} placeholder="Chọn nhà mạng" />
+                                {/*<input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 10, marginTop: 10 }} placeholder="Chọn nhà mạng" />*/}
 
+                                <div >
+                                    <SelectField
+                                        style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, textAlign: 'center' }}
+                                        value={this.state.value}
+                                        onChange={this.handleChange}
+                                    >
+                                        <MenuItem style={{ textAlign: 'center' }} value={1} primaryText="Viettel" />
+                                        <MenuItem style={{ textAlign: 'center' }} value={4} primaryText="Mobifone" />
+                                        <MenuItem style={{ textAlign: 'center' }} value={5} primaryText="VinaPhone" />
+                                    </SelectField>
+                                </div>
                                 <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Nhập số thẻ" />
                                 <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Nhập số serial" />
-                                <button className="button-payment" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} >Xác minh mã khuyến mãi</button>
-
+                                <button className="button-payment" style={{ height: 50, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10, marginBottom: 20 }} >Xác nhận thanh toán</button>
                             </div>
                         </div>
                         :
@@ -196,6 +212,8 @@ export default class Payment extends Component {
                         </div>}
 
                 </div>
+
+                <div style={{ height: 20 }}></div>
             </div >
         )
     }

@@ -13,13 +13,14 @@ export default class Document extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            redirect: false
+            redirect: false,
+            learning: false
         }
     }
-  
+
     render() {
         return (
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', alignItems: 'center', marginTop: 20 }}>
                 <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
                     <div style={{ display: 'flex', height: 220, flexDirection: 'row', border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3, width: 600 }}>
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -48,7 +49,7 @@ export default class Document extends Component {
                             <div style={{
                                 display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
                             }}>
-                                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
+                                <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" onClick={() => { this.setState({ learning: true }) }}>Learning now</button>
                             </div>
                         </div>
                     </div>
@@ -80,7 +81,7 @@ export default class Document extends Component {
                             <div style={{
                                 display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
                             }}>
-                                <button style={{ fontWeight: 'normal', width: 250 }} className="midle-button" onClick={() => { this.setState({ isLearning: true }) }}>Learning now</button>
+                                <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" onClick={() => { this.setState({ learning: true }) }}>Learning now</button>
                             </div>
                         </div>
                     </div>
@@ -91,14 +92,12 @@ export default class Document extends Component {
                         <img src={study} style={{ height: 120 }} />
                         <div style={{}}>Find Pathway you are interested in and enroll</div>
                     </div>
-                    <button className="midle-button" onClick={() => this.setState({ redirect: true })}>
+                    <button style={{ cursor: 'pointer' }} className="midle-button" onClick={() => this.setState({ redirect: true })}>
                         Go to 1ASK Plaza
                     </button>
-                </div>
-                {
-                    this.state.redirect &&
-                     <Redirect to="/plaza" />
-                }
+            </div>
+                {this.state.redirect && <Redirect to="/plaza" /> }
+                { this.state.learning && <Redirect to="/lesson" /> }
             </div >
         )
     }

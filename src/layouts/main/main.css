@@ -1,7 +1,9 @@
 body{
     font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
-    margin: 0 auto;
-    margin-top: -16px;
+    margin: 0;
+    height: 100%;
+    color: gray;
+    overflow-y: scroll;
 }
 
 .midle-button{
@@ -21,7 +23,7 @@ body{
     flex-direction: row;
     background-color: rgb(0,178, 185)
 }
-.profile{
+.profile-small{
     display: flex;  
     height: 120px;
     justify-content: center;
@@ -29,7 +31,7 @@ body{
     flex-direction: column
 }
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 auto;
 }
@@ -52,6 +54,7 @@ li{
     height: 77px;
     background-color: #edeff2;
     align-items: center;
+    margin: 0;
 }
 .nav li img{
     height: 30px;
