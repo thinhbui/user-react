@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
+import { } from 'react-router-dom';
 import Main from './main/main.js';
 import Document from './document/document.js';
 import Lesson, { Learn, Exam } from './lesson/lesson.js';
@@ -14,7 +15,7 @@ import Setting from './setting/setting.js';
 export default class App extends Component {
     render() {
         return (
-            <Router>
+            <Router history={browserHistory}>
                 <div>
                     <Nav />
                     <Switch>

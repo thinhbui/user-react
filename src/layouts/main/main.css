@@ -5,7 +5,32 @@ body{
     color: gray;
     overflow-y: scroll;
 }
-
+.card-view{
+    width: 600px;
+    margin-top: 20px;
+    border:1px solid #edeff2;
+    height: 500px;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+}
+.card-avatar{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex: 1;
+    border-radius: 10px;
+}
+.card-media{
+    
+}
+.card-header{
+    height: 64px;
+    padding: 14px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 .midle-button{
     border-radius: 10px;
     border: 1px solid transparent;
@@ -62,7 +87,7 @@ li{
 }
 input::placeholder{
     font-size: 14px;
-    color: 'gray';
+    color: 'rgb(85,96,128)';
 }
 input{
     width: 200px;

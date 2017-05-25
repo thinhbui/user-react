@@ -23,9 +23,9 @@ class Nav extends React.Component {
                 <div className='container'>
                     <ul className="nav">
                         <li style={{ flex: 1 }}>
-                            <NavLink exact to='/' style={{ display: 'flex', flexDirection: 'row', justifyContent:'center' }}>
-                                <img style={{ height: 40, backgroundColor: 'gray', borderRadius: 5 }} src={logo_app} onClick={() => this.setState({ page: 'home' })} />
-                                <div style={{ fontWeight: 200,alignSelf:'flex-start', fontSize:14 }}>Nền tảng giáo dục theo yêu cầu</div>
+                            <NavLink exact to='/' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
+                                <img style={{ height: 40, backgroundColor: 'rgb(85,96,128)', borderRadius: 5 }} src={logo_app} onClick={() => this.setState({ page: 'home' })} />
+                                <div style={{ color: 'rgb(85,96,128)', fontWeight: 200, alignSelf: 'flex-start', fontSize: 14 }}>Nền tảng giáo dục theo yêu cầu</div>
                             </NavLink>
                         </li>
                         <li style={{ flex: 1 }}>

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/reducer';
 import './person.css';
 import { Redirect, Link } from 'react-router-dom';
-import { ModalContainer, ModalDialog } from 'react-modal-dialog';
+// import { ModalContainer, ModalDialog } from 'react-modal-dialog';
 
 import icon_profile from '../../images/profile.png';
 import icon_setting from '../../images/settingicon.png';

@@ -43,6 +43,16 @@ const mapStateToProps = (state) => ({
 export class CardView extends Component {
   render() {
     return (
+      /*<div className="card-view">
+        <div className="card-header">
+          <div className="card-avatar">
+            <img src={icon_profile} style={{ width: 30, height: 30 }} />
+          </div>
+          <div className="card-media">
+
+          </div>
+        </div>
+      </div>*/
       <Card style={{ width: 600, marginTop: 20, border: '1px solid #edeff2' }}>
         <CardHeader
           title="Đỗ Thị Ngọc Mai"
