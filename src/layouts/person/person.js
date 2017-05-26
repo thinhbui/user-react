@@ -52,7 +52,7 @@ class Person extends Component {
                                 onClick={() => this.setState({ setting: true })}
                                 style={{ cursor: 'pointer', fontWeight: 600, borderRadius: 3, border: '1px solid #dbdbdb', fontSize: 14, height: 26, background: '0 0', color: '#262626' }}>
                                 Chỉnh sửa thông tin cá nhân</button>
-                            <img src={icon_setting} style={{ width: 26, marginLeft: 10, cursor: 'pointer' }} onClick={this.logout} />
+                            {/*<img src={icon_setting} style={{ width: 26, marginLeft: 10, cursor: 'pointer' }} onClick={this.logout} />*/}
                         </div>
                         <div style={{ display: 'flex', justifyContent: 'flex-start', flexDirection: 'row', alignItems: 'center' }}>
                             <div style={{ cursor: 'pointer' }} >

@@ -8,12 +8,16 @@ import Badge from 'material-ui/Badge';
 import { Redirect } from 'react-router-dom';
 import { IconButton } from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+import Modal from 'react-modal';
+
+import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
 
 import { Link, NavLink } from 'react-router-dom';
 import OneAskPlaza from '../plaza/plaza.js';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 // import Lesson, { Learn } from './lesson.js';
 import ReactPlayer from 'react-player';
+import Lightbox from 'react-images';
 import { DetailItem } from '../plaza/plaza.js'
 // import Payment from './payment.js';
 
@@ -33,15 +37,42 @@ import avatar from '../../images/avatar.png';
 import decor from '../../images/decor.png';
 import ic_phone from '../../images/icon_phone.png';
 import ic_next from '../../images/ic_next1.png';
-
+import minions from '../../images/minion.png';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/reducer';
+
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    zIndex: 1000
+  }
+};
 
 const mapStateToProps = (state) => ({
   isLogin: state.isLogin
 })
 export class CardView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lightboxIsOpen: false,
+      showComment: false,
+      router_detail: false
+    }
+
+  }
+  handleClickImage = () => {
+    this.state({ lightboxIsOpen: true, })
+  }
+
   render() {
+    console.log(this.state.showComment)
+
     return (
       /*<div className="card-view">
         <div className="card-header">
@@ -49,11 +80,11 @@ export class CardView extends Component {
             <img src={icon_profile} style={{ width: 30, height: 30 }} />
           </div>
           <div className="card-media">
-
+   
           </div>
         </div>
       </div>*/
-      <Card style={{ width: 600, marginTop: 20, border: '1px solid #edeff2' }}>
+      <Card onClick={() => this.setState({ router_detail: true })} style={{ width: 600, marginTop: 20, border: '1px solid #edeff2', zIndex: 0, cursor: 'pointer' }}>
         <CardHeader
           title="Đỗ Thị Ngọc Mai"
           subtitle="Toán"
@@ -62,14 +93,15 @@ export class CardView extends Component {
           actAsExpander={true}
         />
         <CardMedia
-
           mediaStyle={{ width: 600 }}
           style={{ width: 600 }}
         >
-          <img src={avatar} />
+          <img src={minions} />
+
         </CardMedia >
         <CardTitle title="Giúp e bài này với" subtitle="Phân tích nụ cười của Yao Ming" />
-
+        {this.state.router_detail && <Redirect to="/question-detail/id" />}
+        {/*<div onClick={() => this.setState({ showComment: !this.state.showComment })} style={{ padding: 16, cursor: 'pointer', color: 'gray', fontSize: 14 }}>Xem bình luận</div>*/}
       </Card>
     )
   }
@@ -103,8 +135,25 @@ class Main extends Component {
       hasPathway: false,
       title: '1ASK plaza',
       isHide: false,
-      isLearning: false
+      isLearning: false,
+      modalIsOpen: false
     }
+
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+  }
+  openModal() {
+    this.setState({ modalIsOpen: true });
+  }
+
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.subtitle.style.color = '#f00';
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
   }
   hideBar = () => {
     window.scrollY > this.prev ?
@@ -119,6 +168,7 @@ class Main extends Component {
   componentWillUnmount() {
     window.removeEventListener('scroll', this.hideBar);
   }
+
   select = (index) => {
     this.setState({ selectedIndex: index });
     if (index == 2) {
@@ -134,74 +184,15 @@ class Main extends Component {
     // console.log(`selectedIndex ${this.state.selectedIndex}`, `selectedIndex ${this.state.title}`)
   };
   selectTab = (index) => { this.setState({ tabSelect: index }) }
-  renderNavigationButtom() {
-    return (
-      <div className="navigation buttom" >
-        <Paper zDepth={1}>
-          <BottomNavigation selectedIndex={this.state.selectedIndex}>
-            <BottomNavigationItem className="BottomNavigationItem"
-              label="Hỏi đáp"
-              icon={
-                <FontIcon className="material-icons">
-                  {this.state.selectedIndex !== 0 ? <img src={icon_pathway} /> : <img src={icon_pathway1} />}
-                </FontIcon>
-              }
-              onTouchTap={() => this.select(0)}
-            />
-            <BottomNavigationItem
-              label="Học tập"
-              icon={
-                <FontIcon className="material-icons">
-                  {this.state.selectedIndex !== 1 ? <img src={icon_question} /> : <img src={icon_question1} />}
-                </FontIcon>
-              }
-              onTouchTap={() => this.select(1)}
-            />
-            <BottomNavigationItem
-              label="Cá nhân"
-              icon={
-                <FontIcon className="material-icons">
-                  {this.state.selectedIndex !== 2 ? <img src={icon_person} /> : <img src={icon_person1} />}
-                </FontIcon>
-              }
-              onTouchTap={() => this.select(2)}
-            />
-          </BottomNavigation>
-        </Paper>
-      </div>
-    )
-  }
-  renderTabButton() {
-    let tab1 = this.state.selectedIndex == 0 ? 'Hỏi đáp' : 'Lộ trình của tôi'
-    let tab2 = this.state.selectedIndex == 0 ? 'Câu hỏi của tôi' : '1ASK Plaza'
-
-    return (
-      <div style={{ display: 'flex', width: '100%', height: 50, justifyContent: 'center', alignItems: 'center' }}>
-        <div style={{
-          display: 'flex', justifyContent: 'center', alignItems: 'center',
-          width: '40%', height: 36, cursor: 'pointer',
-          color: this.state.tabSelect == 0 ? 'white' : 'rgb(0, 178, 185)', backgroundColor: this.state.tabSelect == 0 ? 'rgb(0, 178, 185)' : 'white',
-          borderWidth: 1, borderTopLeftRadius: 18, borderBottomLeftRadius: 18, borderColor: 'rgb(0, 178, 185)', borderStyle: 'solid'
-        }} onClick={() => this.selectTab(0)}>
-          {tab1}
-        </div>
-        <div style={{
-          display: 'flex', justifyContent: 'center', alignItems: 'center',
-          width: '40%', height: 36, cursor: 'pointer',
-          color: this.state.tabSelect == 1 ? 'white' : 'rgb(0, 178, 185)', backgroundColor: this.state.tabSelect == 1 ? 'rgb(0, 178, 185)' : 'white',
-          borderWidth: 1, borderTopRightRadius: 18, borderBottomRightRadius: 18, borderColor: 'rgb(0, 178, 185)', borderStyle: 'solid'
-        }} onClick={() => this.selectTab(1)}>
-          {tab2}
-        </div>
-      </div >
-
-    )
-  }
-
   renderTab() {
     if (this.state.tabSelect == 0)
       return (
         <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
+          <CardView />
+          <CardView />
+          <CardView />
+          <CardView />
+          <CardView />
           <CardView />
           <CardView />
         </div >
@@ -252,9 +243,33 @@ class Main extends Component {
     )
   }
   render() {
+    console.log(this.props.isLogin)
     return (
       <div> {this.renderTab()}
+        {!this.props.isLogin && <Redirect to="/login" />}
         {/*{this.props.isLogin && <Redirect to="/login" />}*/}
+        {/*<div>
+          <button onClick={this.openModal}>Open Modal</button>
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onAfterOpen={this.afterOpenModal}
+            onRequestClose={this.closeModal}
+            style={customStyles}
+            contentLabel="Example Modal"
+          >
+
+            <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+            <button onClick={this.closeModal}>close</button>
+            <div>I am a modal</div>
+            <form>
+              <input />
+              <button>tab navigation</button>
+              <button>stays</button>
+              <button>inside</button>
+              <button>the modal</button>
+            </form>
+          </Modal>
+        </div>*/}
       </div>
 
       // <DetailItem />
@@ -263,19 +278,3 @@ class Main extends Component {
 }
 
 export default connect(mapStateToProps)(Main)
-// this.state.hasPathway ?
-{/*<div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
-        <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'column' }}>
-            <img src={study} style={{ height: 100 }} />
-            <div style={{}}>Find Pathway you are interested in and enroll</div>
-          </div>
-          <button style={{ marginBottom: 30, cursor: 'pointer' }} className="midle-button" onClick={() => {
-            this.setState({ tabSelect: 1 });
-          }}>
-            Go to 1ASK Plaza</button>
-        </div>
-        <div style={{ display: 'flex', flex: 1 }}>
-
-        </div>
-      </div >*/}

@@ -95,9 +95,9 @@ export default class Document extends Component {
                     <button style={{ cursor: 'pointer' }} className="midle-button" onClick={() => this.setState({ redirect: true })}>
                         Go to 1ASK Plaza
                     </button>
-            </div>
-                {this.state.redirect && <Redirect to="/plaza" /> }
-                { this.state.learning && <Redirect to="/lesson" /> }
+                </div>
+                {this.state.redirect && <Redirect to="/plaza" />}
+                {this.state.learning && <Redirect to="/lesson/1231" />}
             </div >
         )
     }

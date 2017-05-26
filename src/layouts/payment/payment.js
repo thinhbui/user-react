@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './payment.css';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-
+import { Redirect } from 'react-router-dom';
 import ic_video from '../../images/ic_video.png';
 import ic_voice from '../../images/ic_voice.png';
 import ic_document from '../../images/ic_document.png';
@@ -20,7 +20,8 @@ export default class Payment extends Component {
         this.state = {
             infoBank: false,
             infoPhone: false,
-            value: 1
+            value: 1,
+            success: false
         }
     }
 
@@ -36,7 +37,9 @@ export default class Payment extends Component {
     }
     render() {
         return (
+
             <div className="container" style={{ color: 'gray', display: 'flex', alignItems: 'center', flexDirection: 'column', marginTop: 20 }}>
+                {this.state.success && <Redirect to="/document" />}
                 <div style={{ display: 'flex', height: 60, flexDirection: 'row', width: 600, backgroundColor: 'rgb(0, 178, 185)' }}>
                     <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                         <img src={ic_cancel} style={{ cursor: 'pointer', width: 30, height: 30 }} onClick={() => this.setState({ back: true })} />
@@ -178,7 +181,6 @@ export default class Payment extends Component {
                                     <div style={{ flex: 1 }}></div>
                                     <span style={{ color: 'rgb(0,178,185)', fontWeight: 'bold' }}>20.000 vnđ</span>
                                 </div>
-                                {/*<input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 10, marginTop: 10 }} placeholder="Chọn nhà mạng" />*/}
 
                                 <div >
                                     <SelectField
@@ -193,7 +195,9 @@ export default class Payment extends Component {
                                 </div>
                                 <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Nhập số thẻ" />
                                 <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Nhập số serial" />
-                                <button className="button-payment" style={{ height: 50, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10, marginBottom: 20 }} >Xác nhận thanh toán</button>
+                                <button
+                                    onClick={() => this.setState({ success: true })}
+                                    className="button-payment" style={{ height: 50, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10, marginBottom: 20, cursor: 'pointer' }} >Xác nhận thanh toán</button>
                             </div>
                         </div>
                         :

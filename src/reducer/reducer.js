@@ -70,12 +70,6 @@ export const reducer = (state = initialState, action) => {
                 isPass: true,
             }
         }
-        case types.TIMEMILESTONE: {
-            return {
-                ...state,
-                timeMilestone: payload,
-            }
-        }
         case types.LOGIN: {
             return {
                 ...state,

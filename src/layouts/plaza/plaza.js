@@ -59,7 +59,7 @@ class OneAskPlaza extends Component {
 
     render() {
         return (
-            <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', justifyContent: 'center' }}>
+            <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', justifyContent: 'center', marginTop: 20 }}>
                 <div style={{ height: 100, alignSelf: 'center' }}>
                     <img src={banner} style={{ width: 600, height: 100 }} />
                 </div>
@@ -92,7 +92,7 @@ export class DetailItem extends Component {
                     </div>
                     <div style={{ display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column', width: '100%' }}>
                         <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column', width: '100%' }}>
-                            <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', fontWeight: 580, fontSize: 18 }}>3 Tuần để thành cao thủ tích phân</span>
+                            <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', fontWeight: 580, fontSize: 18 }}>3 Tuần để thành cao thủ {this.props.match.params.id}</span>
                             <span style={{ display: 'flex', justifyContent: 'center', alignItems: 'flex-start', color: 'gray', fontSize: 14, margin: 5 }}>Giảng viên: Nguyễn Ngọc Đức</span>
                             <div style={{ display: 'flex', flexDirection: 'row', fontSize: 12, width: '80%' }}>
                                 <div className="item-lesson" style={{ margin: 5, flex: 1 }}>
@@ -164,9 +164,9 @@ export class DetailItem extends Component {
                     </button>
                 </div>
                 <div style={{ height: 50, display: 'flex', flexDirection: 'row', color: 'white', fontSize: 18, fontWeight: 700, width: 600, backgroundColor: 'rgb(0, 178, 185)', alignItems: 'center', marginTop: 20 }}>
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }} onClick={() => { this.setState({ payment: true }) }} >Mua ngay: 500k</div>
+                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }} onClick={() => { this.setState({ payment: true }) }} >Mua ngay: 500k</div>
                     <div style={{ backgroundColor: 'white', width: 2, height: '100%' }} />
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center' }}>Đăng kí học thử</div>
+                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }}>Đăng kí học thử</div>
                 </div>
                 <div style={{ height: 20 }}></div>
                 {this.state.payment && <Redirect to="/payment" />}
@@ -218,6 +218,13 @@ class ObjectItem extends Component {
                                     <div style={{ color: 'red' }}>200k</div>
                                     <button
                                         onClick={() => this.setState({ seeDetail: true })}
+
+
+
+
+
+
+
                                         style={{
                                             width: '50%', border: '1px solid rgb(0, 178, 185)',
                                             color: 'rgb(0, 178, 185)', backgroundColor: 'white', borderRadius: 5, cursor: 'pointer'
@@ -227,7 +234,7 @@ class ObjectItem extends Component {
                         </div>
                     ))}
                 </GridList>
-                {this.state.seeDetail && <Redirect to="detail" />}
+                {this.state.seeDetail && <Redirect to="/detail/123123" />}
             </div >
         )
     }
