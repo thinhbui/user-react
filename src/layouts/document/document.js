@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 
 import { CircularProgress } from 'material-ui';
@@ -49,7 +49,9 @@ export default class Document extends Component {
                             <div style={{
                                 display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
                             }}>
-                                <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" onClick={() => { this.setState({ learning: true }) }}>Learning now</button>
+                                <Link to="/lesson/1231">
+                                    <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" >Learning now</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -81,7 +83,9 @@ export default class Document extends Component {
                             <div style={{
                                 display: 'flex', flex: 2, alignItems: 'flex-start', flexDirection: 'column', width: '100%'
                             }}>
-                                <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" onClick={() => { this.setState({ learning: true }) }}>Learning now</button>
+                                <Link to="/lesson/1231">
+                                    <button style={{ fontWeight: 'normal', width: 250, cursor: 'pointer' }} className="midle-button" onClick={() => { this.setState({ learning: true }) }}>Learning now</button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -92,12 +96,13 @@ export default class Document extends Component {
                         <img src={study} style={{ height: 120 }} />
                         <div style={{}}>Find Pathway you are interested in and enroll</div>
                     </div>
-                    <button style={{ cursor: 'pointer' }} className="midle-button" onClick={() => this.setState({ redirect: true })}>
-                        Go to 1ASK Plaza
-                    </button>
+                    <Link to="/plaza">
+                        <button style={{ cursor: 'pointer' }} className="midle-button" >
+                            Go to 1ASK Plaza
+                    </button></Link>
                 </div>
-                {this.state.redirect && <Redirect to="/plaza" />}
-                {this.state.learning && <Redirect to="/lesson/1231" />}
+                {/*{this.state.redirect && <Redirect to="/plaza" />}*/}
+                {/*{this.state.learning && <Redirect to="/lesson/1231" />}*/}
             </div >
         )
     }

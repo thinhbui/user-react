@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import MediaQuery from 'react-responsive';
 
 import logo_app from '../../images/logoapp_User.png';
 import icon_pathway from '../../images/icon_pathway0.png';
@@ -37,6 +38,10 @@ class Nav extends React.Component {
             logout: false
         }
     }
+
+    // componentDidUpdate() {
+    //     console.log(this.refs.notification.getBoundingClientRect());
+    // }
     handleTouchTap = (event) => {
         // This prevents ghost click.
         event.preventDefault();
@@ -58,65 +63,132 @@ class Nav extends React.Component {
     render() {
         return (
             this.props.isLogin ?
-                <div style={{ width: '100%', margin: 0, height: 77, backgroundColor: '#edeff2', border: '1px solid rgba(0,0,0,.0975)' }}>
-                    <div className='container'>
-                        <ul className="nav">
-                            <li style={{ flex: 1 }}>
-                                <NavLink exact to='/' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-                                    <img style={{ height: 40, backgroundColor: 'rgb(85,96,128)', borderRadius: 5 }} src={logo_app} onClick={() => this.setState({ page: 'home' })} />
-                                    <div style={{ color: 'rgb(85,96,128)', fontWeight: 200, alignSelf: 'flex-start', fontSize: 14 }}>Nền tảng giáo dục theo yêu cầu</div>
-                                </NavLink>
-                            </li>
-                            <li style={{ flex: 1 }}>
-                                <input type="text" placeholder="Tìm kiếm" />
-                            </li>
-                            <div style={{ flex: .5, display: 'flex' }}>
-                                <li style={{ flex: 1 }}>
-                                    <img src={ic_notification} style={{ cursor: 'pointer' }} onClick={this.handleTouchTap} />
-                                    <Popover
-                                        open={this.state.open}
-                                        anchorEl={this.state.anchorEl}
-                                        anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
-                                        targetOrigin={{ horizontal: 'left', vertical: 'top' }}
-                                        onRequestClose={this.handleRequestClose}
-                                    >
-                                        <Menu >
-                                            <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
-                                            <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
-                                            <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
-                                            <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
-                                        </Menu>
-                                    </Popover>
-                                </li>
-                                <li style={{ flex: 1 }}>
-                                    <NavLink activeClassName='active' to='/pathway'>
-                                        {this.state.page == 'pathway' ?
-                                            <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
-                                            :
-                                            <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
-                                        }
-                                    </NavLink>
-                                </li>
-                                <li style={{ flex: 1 }}>
-                                    <NavLink activeClassName='active' to='/plaza'>
-                                        <img src={icon_store} onClick={() => this.setState({ page: 'plaza' })} />
-                                    </NavLink>
-                                </li>
-                                <li style={{ flex: 1 }}>
-                                    <NavLink activeClassName='active' to='/person'>
-                                        <img src={icon_profile} onClick={() => this.setState({ page: 'person' })} />
-                                    </NavLink>
-                                </li>
-                                <li style={{ flex: 1 }}>
-                                    <NavLink activeClassName='active' to='/login'>
-                                        <img src={logout} onClick={this.logout} />
-                                    </NavLink>
-                                </li>
+                <div >
+                    <MediaQuery query='(min-device-width: 890px)'>
+                        <div style={{ width: '100%', margin: 0, height: 77, backgroundColor: '#edeff2', border: '1px solid rgba(0,0,0,.0975)' }}>
+                            <div className='container'>
+                                <ul className="nav">
+                                    <li style={{ flex: 1 }}>
+                                        <NavLink exact to='/' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                            <img style={{ height: 40, backgroundColor: 'rgb(85,96,128)', borderRadius: 5 }} src={logo_app} onClick={() => this.setState({ page: 'home' })} />
+                                            <div style={{ color: 'rgb(85,96,128)', fontWeight: 200, alignSelf: 'flex-start', fontSize: 14 }}>Nền tảng giáo dục theo yêu cầu</div>
+                                        </NavLink>
+                                    </li>
+                                    <li style={{ flex: 1 }}>
+                                        <input type="text" placeholder="Tìm kiếm" />
+                                    </li>
+                                    <div style={{ flex: .5, display: 'flex' }}>
+                                        <li style={{ flex: 1 }}>
+                                            <img ref="notification" src={ic_notification} style={{ cursor: 'pointer' }} onClick={this.handleTouchTap} />
+                                            <Popover
+                                                open={this.state.open}
+                                                anchorEl={this.state.anchorEl}
+                                                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                                                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                                onRequestClose={this.handleRequestClose}
+                                            >
+                                                <Menu >
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                </Menu>
+                                            </Popover>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/pathway'>
+                                                {this.state.page === 'pathway' ?
+                                                    <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
+                                                    :
+                                                    <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
+                                                }
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/plaza'>
+                                                <img src={icon_store} onClick={() => this.setState({ page: 'plaza' })} />
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/person'>
+                                                <img src={icon_profile} onClick={() => this.setState({ page: 'person' })} />
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/login'>
+                                                <img src={logout} onClick={this.logout} />
+                                            </NavLink>
+                                        </li>
+
+                                    </div>
+                                </ul>
 
                             </div>
-                        </ul>
+                        </div>
+                    </MediaQuery>
+                    <MediaQuery query='(max-device-width: 890px)'>
+                        <div style={{ width: '100%', margin: 0, height: 77, backgroundColor: '#edeff2', border: '1px solid rgba(0,0,0,.0975)' }}>
+                            <div className='container'>
+                                <ul className="nav">
+                                    <li style={{ flex: 1 }}>
+                                        <NavLink exact to='/' style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start' }}>
+                                            <img style={{ height: 40, backgroundColor: 'rgb(85,96,128)', borderRadius: 5 }} src={logo_app} onClick={() => this.setState({ page: 'home' })} />
+                                            {/*<div style={{ color: 'rgb(85,96,128)', fontWeight: 200, alignSelf: 'flex-start', fontSize: 14 }}>Nền tảng giáo dục theo yêu cầu</div>*/}
+                                        </NavLink>
+                                    </li>
+                                    <li style={{ flex: 1 }}>
+                                        <input type="text" placeholder="Tìm kiếm" />
+                                    </li>
+                                    <div style={{ flex: .5, display: 'flex' }}>
+                                        <li style={{ flex: 1 }}>
+                                            <img ref="notification" src={ic_notification} style={{ cursor: 'pointer' }} onClick={this.handleTouchTap} />
+                                            <Popover
+                                                open={this.state.open}
+                                                anchorEl={this.state.anchorEl}
+                                                anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+                                                targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+                                                onRequestClose={this.handleRequestClose}
+                                            >
+                                                <Menu >
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                    <MenuItem primaryText="Chào mừng đền với 1ASK" leftIcon={<img style={{ width: 30, height: 30 }} src={icon_profile} />} rightIcon={<div style={{ width: 50, color: 'gray', margin: 0 }}>1 giờ</div>} />
+                                                </Menu>
+                                            </Popover>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/pathway'>
+                                                {this.state.page === 'pathway' ?
+                                                    <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
+                                                    :
+                                                    <img src={document} onClick={() => this.setState({ page: 'pathway' })} />
+                                                }
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/plaza'>
+                                                <img src={icon_store} onClick={() => this.setState({ page: 'plaza' })} />
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/person'>
+                                                <img src={icon_profile} onClick={() => this.setState({ page: 'person' })} />
+                                            </NavLink>
+                                        </li>
+                                        <li style={{ flex: 1 }}>
+                                            <NavLink activeClassName='active' to='/login'>
+                                                <img src={logout} onClick={this.logout} />
+                                            </NavLink>
+                                        </li>
 
-                    </div>
+                                    </div>
+                                </ul>
+
+                            </div>
+                        </div>
+                    </MediaQuery>
+
                 </div>
                 :
                 <div />
@@ -124,23 +196,4 @@ class Nav extends React.Component {
         )
     }
 }
-// const modalStyle = {
-//     content: {
-//         // width: '100%',
-//         marginLeft: -423,
-//         right: 'initial',
-//         top: 15,
-//         left: 550,
-//         width: 300,
-//         flexDirection: 'column',
-//         borderStyle: 'none',
-//         padding: 0,
-//         zIndex: 100
-//     },
-//     overlay: {
-//         position: 'inherit',
-//         backgroundColor: 'transparent',
-//         minHeight: 50,
-//     }
-// };
 export default connect(mapStateToProps)(Nav)

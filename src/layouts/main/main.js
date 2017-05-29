@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 import './main.css';
 
-import FontIcon from 'material-ui/FontIcon';
 import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
-import Paper from 'material-ui/Paper';
-import Badge from 'material-ui/Badge';
 import { Redirect } from 'react-router-dom';
 import { IconButton } from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import Modal from 'react-modal';
-
 import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
-
+import MediaQuery from 'react-responsive';
 import { Link, NavLink } from 'react-router-dom';
 import OneAskPlaza from '../plaza/plaza.js';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 // import Lesson, { Learn } from './lesson.js';
 import ReactPlayer from 'react-player';
 import Lightbox from 'react-images';
-import { DetailItem } from '../plaza/plaza.js'
-// import Payment from './payment.js';
+import { DetailItem } from '../plaza/plaza.js';
 
 import icon_profile from '../../images/profile.png';
 import icon_pathway from '../../images/icon_pathway0.png';
@@ -61,7 +56,7 @@ export class CardView extends Component {
     super(props);
     this.state = {
       lightboxIsOpen: false,
-      showComment: false,
+      // showComment: false,
       router_detail: false
     }
 
@@ -71,8 +66,6 @@ export class CardView extends Component {
   }
 
   render() {
-    console.log(this.state.showComment)
-
     return (
       /*<div className="card-view">
         <div className="card-header">
@@ -171,7 +164,7 @@ class Main extends Component {
 
   select = (index) => {
     this.setState({ selectedIndex: index });
-    if (index == 2) {
+    if (index === 2) {
       this.setState({
         title: 'Cá nhân'
       })
@@ -185,7 +178,7 @@ class Main extends Component {
   };
   selectTab = (index) => { this.setState({ tabSelect: index }) }
   renderTab() {
-    if (this.state.tabSelect == 0)
+    if (this.state.tabSelect === 0)
       return (
         <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
           <CardView />
@@ -198,7 +191,7 @@ class Main extends Component {
         </div >
       )
     else
-      if (this.state.tabSelect == 1)
+      if (this.state.tabSelect === 1)
         return (
           <div style={{ display: 'flex', flex: 1, flexDirection: 'column' }}>
 
@@ -243,34 +236,11 @@ class Main extends Component {
     )
   }
   render() {
-    console.log(this.props.isLogin)
     return (
       <div> {this.renderTab()}
         {!this.props.isLogin && <Redirect to="/login" />}
-        {/*{this.props.isLogin && <Redirect to="/login" />}*/}
-        {/*<div>
-          <button onClick={this.openModal}>Open Modal</button>
-          <Modal
-            isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-
-            <h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
-            <button onClick={this.closeModal}>close</button>
-            <div>I am a modal</div>
-            <form>
-              <input />
-              <button>tab navigation</button>
-              <button>stays</button>
-              <button>inside</button>
-              <button>the modal</button>
-            </form>
-          </Modal>
-        </div>*/}
       </div>
+     
 
       // <DetailItem />
     );

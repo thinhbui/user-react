@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import {
     ShareButtons,
@@ -153,7 +153,7 @@ export class Exam extends Component {
                         url='https://1ask.vn/'
                         title='Vượt qua lộ trình abc'
                         picture={`${String(window.location)}/${star1}`}
-                       // beforeOnClick={() => this.setState({ backtoLesson: true })}
+                        // beforeOnClick={() => this.setState({ backtoLesson: true })}
                         style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', backgroundColor: 'white', zIndex: 100, width: 400, color: 'rgb(0,178,185)', marginTop: 20, borderRadius: 25, height: 50, borderStyle: 'none', fontSize: 20 }} >
                         Chia sẻ với Facebook
                     </FacebookShareButton>
@@ -245,9 +245,7 @@ export default class Lesson extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            back: false,
             learn: false,
-            exam: false,
         }
     }
     render() {
@@ -256,10 +254,9 @@ export default class Lesson extends Component {
                 <Learn name={this.props.match.params.id} handleBack={() => this.setState({ learn: false })} />
                 :
                 <div style={{ display: 'flex', width: '100%', flex: 1, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', marginTop: 20 }}>
-                    {this.state.back && <Redirect to="/" />}
                     <div style={{ display: 'flex', height: 50, flexDirection: 'row', width: 600, backgroundColor: 'rgb(0, 178, 185)' }}>
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                            <img src={ic_back} style={{ cursor: 'pointer', height: 30 }} onClick={() => this.setState({ back: true })} />
+                            <Link to="/pathway"><img src={ic_back} style={{ cursor: 'pointer', height: 30 }} /></Link>
                         </div>
                         <div style={{ flex: 8, display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white', fontWeight: 600 }}>
                             3 Tuần để trở thành cao thủ tích phân {this.props.match.params.id}
@@ -279,14 +276,15 @@ export default class Lesson extends Component {
                             <LessonItem iconLock={ic_lock0} />
                             <LessonItem iconLock={ic_lock0} />
                             <LessonItem iconLock={ic_lock0} />
-                            <button
-                                onClick={() => { this.setState({ exam: true }) }}
-                                style={{
-                                    cursor: 'pointer', borderRadius: 20, height: 40, width: 300, borderStyle: 'none', alignSelf: 'center',
-                                    backgroundColor: 'rgb(0, 178, 185)', color: 'white', fontSize: 16, fontWeight: 'bold'
-                                }}>
-                                Thi vượt rào
-                        </button>
+                            <Link to="/exam/12312">
+                                <button
+                                    style={{
+                                        cursor: 'pointer', borderRadius: 20, height: 40, width: 300, borderStyle: 'none', alignSelf: 'center',
+                                        backgroundColor: 'rgb(0, 178, 185)', color: 'white', fontSize: 16, fontWeight: 'bold'
+                                    }}>
+                                    Thi vượt rào
+                            </button>
+                            </Link>
                         </div>
 
                         <div className="flex" style={{ width: 600, flexDirection: 'column' }}>
@@ -294,25 +292,24 @@ export default class Lesson extends Component {
                                 <img src={ic_topic} style={{ height: 30 }} />
                                 <span style={{ fontSize: 18, marginLeft: 10 }}>Tích phân</span>
                             </div>
-                            <LessonItem iconLock={ic_lock2} handleClick={() => this.setState({ learn: true })} />
-                            <LessonItem iconLock={ic_lock2} handleClick={() => this.setState({ learn: true })} />
+                            <Link to="/pathway" ><LessonItem iconLock={ic_lock2} handleClick={() => this.setState({ learn: true })} /></Link>
+                            <Link to="/pathway" ><LessonItem iconLock={ic_lock2} handleClick={() => this.setState({ learn: true })} /></Link>
                             <LessonItem iconLock={ic_lock1} />
                             <LessonItem iconLock={ic_lock0} />
                             <LessonItem iconLock={ic_lock0} />
                             <LessonItem iconLock={ic_lock0} />
-                            <button
-                                onClick={() => { this.setState({ exam: true }) }}
-                                style={{
-                                    borderRadius: 20, height: 40, width: 300, borderStyle: 'none', alignSelf: 'center',
-                                    backgroundColor: 'rgb(0, 178, 185)', color: 'white', fontSize: 16, fontWeight: 'bold'
-                                }}>
-                                Thi vượt rào
+                            <Link to="/exam/12312">
+                                <button
+                                    style={{
+                                        borderRadius: 20, height: 40, width: 300, borderStyle: 'none', alignSelf: 'center',
+                                        backgroundColor: 'rgb(0, 178, 185)', color: 'white', fontSize: 16, fontWeight: 'bold'
+                                    }}>
+                                    Thi vượt rào
                         </button>
+                            </Link>
                         </div>
                     </div>
                     <div style={{ height: 20 }} />
-                    {this.state.learn && <Redirect to="/pathway" />}
-                    {this.state.exam && <Redirect to="/exam/12312" />}
                 </div >
         )
     }

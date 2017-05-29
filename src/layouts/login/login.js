@@ -5,32 +5,84 @@ import FacebookLogin from 'react-facebook-login';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/reducer';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+// import setAuthorizationToken from '../../utils/setAuthorizationToken';
+import setting from '../../config/setting';
+// import Modal from 'react-modal';
+// import { Link } from 'react-router-dom';
 
-import bg from '../../images/bg5.png';
+
 import logo from '../../images/logoapp_User.png';
-import facebook from '../../images/facebook.png';
-import google from '../../images/google.png';
+// import facebook from '../../images/facebook.png';
+// import google from '../../images/google.png';
 import demo from '../../images/demo.jpg';
 import googleplay from '../../images/googleplay.png';
 import appstore from '../../images/appstore.png';
 
+
 const mapStateToProps = (state) => ({
-    isLogin: state.isLogin
+    isLogin: state.isLogin,
+    user: state.user
 })
 class Login extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            bool: false,
+        }
+    }
     googleLogin = (res) => {
-        const { dispatch } = this.props;
-        dispatch(actionCreators.login(res));
-        console.log(res);
+        if (!res.error) {
+            const { dispatch } = this.props;
+            dispatch(actionCreators.login(res));
+            console.log(res);
+        }
+        // this.loginThirdParty('google', res.accessToken);
     }
     facebookLogin = (res) => {
+        // axios.post('https://www.facebook.com/v2.9/dialog/oauth',
+        //     {
+        //         client_id: '287502975038002',
+        //         redirect_uri: 'https://www.facebook.com/connect/login_success.html',
+        //         display: 'popup',
+        //         response_type: 'code'
+        //     }
+        // )
+        //     .then((res) => {
+
+        //         console.log(res);
+        //     })
+        //     .catch((res) => {
+        //         console.log(res);
+        //     })
+
         const { dispatch } = this.props;
         dispatch(actionCreators.login(res));
-        console.log(res);
+        // console.log(res);
+        // this.loginThirdParty('facebook', res.accessToken);
+    }
+
+    logout = () => {
+        const { dispatch } = this.props;
+        dispatch(actionCreators.logout());
+    }
+
+    loginThirdParty = (thirdParty, accessToken) => {
+        axios.post(setting.ServiceAddress + 'auth/third-party/login',
+            {
+                "thirdParty": thirdParty,
+                "auth_code": accessToken
+            })
+            .then(res => {
+                const token = res.data.token;
+                console.log(res);
+                localStorage.setItem('token', token);
+            })
     }
     render() {
+        console.log(this.props.user)
         return (
-            this.props.isLogin ?
+            (this.props.user !== {} && this.props.isLogin) ?
                 <Redirect to="/" />
                 :
                 <div className="container" style={{ display: 'flex', flexDirection: 'row', marginTop: 100, alignItems: 'center', justifyContent: 'center', color: 'black' }} >
@@ -48,7 +100,6 @@ class Login extends Component {
                             < div style={{ height: 50, width: '100%', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', display: 'flex', marginTop: 20 }}>
                                 <FacebookLogin
                                     appId="287502975038002"
-                                    autoLoad={false}
                                     fields="name,email,picture"
                                     callback={this.facebookLogin}
                                     cssClass="button-facebook"

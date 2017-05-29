@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import './setting.css';
 
-import { Redirect } from 'react-router-dom'
+import { Redirect, Link } from 'react-router-dom'
 
 export default class Setting extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            cancel: false
-        }
-    }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         cancel: false
+    //     }
+    // }
     render() {
         return (
             <div className="container" style={{ height: 500, display: 'flex', flexDirection: 'column', marginTop: 50, color: 'black', width: 800 }}>
@@ -39,10 +39,10 @@ export default class Setting extends Component {
                     </div>
                 </div>
                 <div>
-                    <button style={{ cursor: 'pointer', height: 30, width: 150, marginLeft: 120 }} onClick={() => this.setState({ cancel: true })}>Save</button>
-                    <button style={{ cursor: 'pointer', height: 30, width: 150, marginLeft: 10 }} onClick={() => this.setState({ cancel: true })}>Cancel</button>
+                    <Link to="/person"><button style={{ cursor: 'pointer', height: 30, width: 150, marginLeft: 120 }} onClick={() => this.setState({ cancel: true })}>Save</button></Link>
+                    <Link to="/person"> <button style={{ cursor: 'pointer', height: 30, width: 150, marginLeft: 10 }} onClick={() => this.setState({ cancel: true })}>Cancel</button></Link>
                 </div>
-                {this.state.cancel && <Redirect to="/person" />}
+                {/*{this.state.cancel && <Redirect to="/person" />}*/}
             </div >
         )
     }

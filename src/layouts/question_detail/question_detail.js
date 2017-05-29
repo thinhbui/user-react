@@ -31,38 +31,37 @@ export default class QuestionDetail extends Component {
             {
                 id: 2,
                 avatar: { icon_profile },
-                message: "Hello"
+                message: "Ahihi. Cậu là đồ ngốc"
 
             },
             {
                 id: 1,
                 avatar: { icon_profile },
-                message: "Hello"
+                message: "Hihi"
 
             },
             {
                 id: 2,
                 avatar: { icon_profile },
-                message: "Hello"
+                message: "Hi cc"
 
             },
             {
                 id: 1,
                 avatar: { icon_profile },
-                message: "Hello"
+                message: "Ừm"
 
             },
             {
                 id: 2,
                 avatar: { icon_profile },
-                message: "Hello"
-
+                message: "<3"
             }
         ]
     }
     renderComment = (comment, index) => {
         return (
-            <div key={index} style={{ padding: 16, display: 'flex', alignItems: 'center' }}>
+            <div key={index} style={{ padding: 16, display: 'flex', alignItems: 'center', border: '1px solid rgb(237, 239, 242)' }}>
                 {comment.id == 1 ? <img src={icon_profile} style={{ width: 30 }} /> : <img src={avatar} style={{ width: 30, borderRadius: 15, height: 30 }} />}
                 <div style={{ marginLeft: 10 }}>{comment.message}</div>
             </div>
@@ -103,8 +102,9 @@ export default class QuestionDetail extends Component {
         this.gotoNext();
     }
     render() {
+
         return (
-            <div className="container" style={{display: 'flex', flexDirection: 'column', marginTop: 20, color: 'black', width: 600, cursor: 'pointer' }}>
+            <div className="container" style={{ display: 'flex', flexDirection: 'column', color: 'black', width: 600, cursor: 'pointer' }}>
                 <Card style={{ width: 600, marginTop: 20, border: '1px solid #edeff2', zIndex: 0 }}>
                     <CardHeader
                         title="Đỗ Thị Ngọc Mai"
@@ -125,7 +125,9 @@ export default class QuestionDetail extends Component {
                         <img src={minions} onClick={() => this.openLightbox()} />
                     </CardMedia >
                     <CardTitle title="Giúp e bài này với" subtitle="Phân tích nụ cười của Yao Ming" />
-                    <div onClick={() => this.setState({ showComment: !this.state.showComment })} style={{ padding: 16, cursor: 'pointer', color: 'gray', fontSize: 14 }}>Xem bình luận</div>
+                    <div onClick={() => this.setState({ showComment: !this.state.showComment })} style={{ padding: 16, cursor: 'pointer', color: 'gray', fontSize: 14, border: '1px solid rgb(237, 239, 242)' }}>
+                        {!this.state.showComment ? 'Xem bình luận' : 'Ẩn bình luận'}
+                    </div>
                     {this.state.showComment && this.listComment.map(this.renderComment)}
                 </Card>
                 <div style={{ height: 40 }}></div>

@@ -3,7 +3,7 @@ import { GridList, GridTile } from 'material-ui/GridList';
 import { IconButton } from 'material-ui';
 import { StarBorder } from 'material-ui';
 import { LessonItem } from '../lesson/lesson';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 
 import ic_lock0 from '../../images/ic_lock0.png';
 import ic_lock1 from '../../images/ic_lock1.png';
@@ -74,12 +74,6 @@ class OneAskPlaza extends Component {
     }
 }
 export class DetailItem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            payment: false
-        }
-    }
     render() {
         return (
             <div className="container" style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
@@ -164,12 +158,11 @@ export class DetailItem extends Component {
                     </button>
                 </div>
                 <div style={{ height: 50, display: 'flex', flexDirection: 'row', color: 'white', fontSize: 18, fontWeight: 700, width: 600, backgroundColor: 'rgb(0, 178, 185)', alignItems: 'center', marginTop: 20 }}>
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }} onClick={() => { this.setState({ payment: true }) }} >Mua ngay: 500k</div>
+                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }} ><Link to="/payment" style={{ color: 'white' }}>Mua ngay: 500k</Link></div>
                     <div style={{ backgroundColor: 'white', width: 2, height: '100%' }} />
-                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }}>Đăng kí học thử</div>
+                    <div style={{ flex: 1, display: 'flex', justifyContent: 'center', cursor: 'pointer' }}><Link to="/payment" style={{ color: 'white' }}>Đăng kí học thử</Link></div>
                 </div>
                 <div style={{ height: 20 }}></div>
-                {this.state.payment && <Redirect to="/payment" />}
             </div >
 
         )
@@ -195,8 +188,8 @@ class ObjectItem extends Component {
                     </div>
                     <div style={{ flex: 1 }}></div>
                     <div style={{ height: 40, display: 'flex', flexDirection: 'column', justifyContent: 'center', marginRight: 5 }}
-                        onClick={() => this.setState({ seeDetail: true })}>
-                        <text style={{ alignSelf: 'flex-end', color: 'gray', cursor: 'pointer' }}>Xem thêm</text>
+                    >
+                        <Link to="/detail/123123" style={{ alignSelf: 'flex-end', color: 'gray', cursor: 'pointer' }}>Xem thêm</Link>
                     </div>
                 </div>
 
@@ -216,25 +209,18 @@ class ObjectItem extends Component {
                                 <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'space-around', width: '100%', alignItems: 'center' }}>
                                     <div style={{ textDecoration: 'line-through', color: 'gray' }}>500k</div>
                                     <div style={{ color: 'red' }}>200k</div>
-                                    <button
-                                        onClick={() => this.setState({ seeDetail: true })}
-
-
-
-
-
-
-
+                                    <Link to="/detail/123123" style={{ width: '50%', }} ><button
                                         style={{
-                                            width: '50%', border: '1px solid rgb(0, 178, 185)',
+                                            width: '100%', border: '1px solid rgb(0, 178, 185)',
                                             color: 'rgb(0, 178, 185)', backgroundColor: 'white', borderRadius: 5, cursor: 'pointer'
                                         }}>Xem chi tiết</button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
                     ))}
                 </GridList>
-                {this.state.seeDetail && <Redirect to="/detail/123123" />}
+                {/*{this.state.seeDetail && <Redirect to="/detail/123123" />}*/}
             </div >
         )
     }
