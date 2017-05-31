@@ -86,7 +86,6 @@ class SimplestSampleComponent extends React.Component {
     }
 
     verticalClickHandle() {
-
         if (this.state.verticalDirection === 'top') {
             this.setState({
                 verticalDirection: 'bottom',
@@ -102,6 +101,8 @@ class SimplestSampleComponent extends React.Component {
     }
 
     getAutoResponsiveProps() {
+        console.log(this.state.containerHeight, this.props.containerWidth);
+
         return {
             horizontalDirection: this.state.horizontalDirection,
             verticalDirection: this.state.verticalDirection,
@@ -119,13 +120,28 @@ class SimplestSampleComponent extends React.Component {
             return <div className="item" key={i} style={style}>{i}</div>;
         });
     }
-
+    componentDidUpdate() {
+    }
 
     render() {
+
         return (
-            <div>
+            <div style={{ width: '80%' }}>
                 <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }>
-                    {this.renderItems()}
+                    {/*{this.renderItems()}*/}
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
+                    <div className="item" style={style}>1</div>
                 </AutoResponsive>
             </div>
         );

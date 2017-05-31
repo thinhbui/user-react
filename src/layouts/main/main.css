@@ -141,3 +141,9 @@ input{
 .item-lesson img{
     height: 20px;
 }
+
+@media only screen and (max-width: 900px) {
+    #fadeshow1 {
+        display: none;
+    }
+}
