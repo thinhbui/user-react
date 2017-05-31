@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import AutoComplete from 'material-ui/AutoComplete';
 import './payment.css';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import { Redirect } from 'react-router-dom';
+
+
 import ic_video from '../../images/ic_video.png';
 import ic_voice from '../../images/ic_voice.png';
 import ic_document from '../../images/ic_document.png';
@@ -183,14 +186,27 @@ export default class Payment extends Component {
                                 </div>
 
                                 <div >
+                                    {/*<AutoComplete
+                                        searchText={this.state.searchText}
+                                        onUpdateInput={this.handleUpdateInput}
+                                        onNewRequest={this.handleNewRequest}
+                                        filter={(searchText, key) => (key.indexOf(searchText) !== -1)}
+                                        openOnFocus={true}
+                                        hintText="Chọn mạng"
+                                        dataSource={['Viettel', 'VinaPhone', 'Mobifone']}
+                                        menuProps={{
+                                            desktop: true,
+                                            disableAutoFocus: true
+                                        }}
+                                    />*/}
                                     <SelectField
                                         style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, textAlign: 'center' }}
                                         value={this.state.value}
                                         onChange={this.handleChange}
                                     >
                                         <MenuItem style={{ textAlign: 'center' }} value={1} primaryText="Viettel" />
-                                        <MenuItem style={{ textAlign: 'center' }} value={4} primaryText="Mobifone" />
-                                        <MenuItem style={{ textAlign: 'center' }} value={5} primaryText="VinaPhone" />
+                                        <MenuItem style={{ textAlign: 'center' }} value={2} primaryText="Mobifone" />
+                                        <MenuItem style={{ textAlign: 'center' }} value={3} primaryText="VinaPhone" />
                                     </SelectField>
                                 </div>
                                 <input type="text" style={{ height: 40, width: '100%', border: '1px solid rgb(0, 178, 185)', borderRadius: 20, marginTop: 10 }} placeholder="Nhập số thẻ" />

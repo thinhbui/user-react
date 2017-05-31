@@ -1,33 +1,12 @@
 import React, { Component } from 'react';
 import './main.css';
 
-import { BottomNavigation, BottomNavigationItem } from 'material-ui/BottomNavigation';
 import { Redirect } from 'react-router-dom';
-import { IconButton } from 'material-ui/IconButton';
-import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
-import Modal from 'react-modal';
-import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
-import MediaQuery from 'react-responsive';
-import { Link, NavLink } from 'react-router-dom';
-import OneAskPlaza from '../plaza/plaza.js';
+import { Link } from 'react-router-dom';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-// import Lesson, { Learn } from './lesson.js';
-import ReactPlayer from 'react-player';
-import Lightbox from 'react-images';
-import { DetailItem } from '../plaza/plaza.js';
-
+import { AutoResponsive } from 'autoresponsive-react';
 import icon_profile from '../../images/profile.png';
-import icon_pathway from '../../images/icon_pathway0.png';
-import icon_person from '../../images/icon_person0.png';
-import icon_question from '../../images/icon_question.png';
-import icon_pathway1 from '../../images/icon_pathway1.png';
-import icon_person1 from '../../images/icon_person1.png';
-import icon_question1 from '../../images/icon_question1.png';
-import logo_app from '../../images/logoapp_User.png';
-import ic_video from '../../images/ic_video.png';
-import ic_voice from '../../images/ic_voice.png';
-import ic_notification from '../../images/ic_notification1.png';
-import ic_search from '../../images/ic_search0.png';
+
 import avatar from '../../images/avatar.png';
 import decor from '../../images/decor.png';
 import ic_phone from '../../images/icon_phone.png';
@@ -36,17 +15,6 @@ import minions from '../../images/minion.png';
 import { connect } from 'react-redux';
 import { actionCreators } from '../../reducer/reducer';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: 1000
-  }
-};
 
 const mapStateToProps = (state) => ({
   isLogin: state.isLogin
@@ -77,25 +45,28 @@ export class CardView extends Component {
           </div>
         </div>
       </div>*/
-      <Card onClick={() => this.setState({ router_detail: true })} style={{ width: 600, marginTop: 20, border: '1px solid #edeff2', zIndex: 0, cursor: 'pointer' }}>
-        <CardHeader
-          title="Đỗ Thị Ngọc Mai"
-          subtitle="Toán"
-          avatar={icon_profile}
-          style={{ width: 600 }}
-          actAsExpander={true}
-        />
-        <CardMedia
-          mediaStyle={{ width: 600 }}
-          style={{ width: 600 }}
-        >
-          <img src={minions} />
+      <Link to="/question-detail/id">
+        <Card onClick={() => this.setState({ router_detail: true })} style={{ width: 600, marginTop: 20, border: '1px solid #edeff2', zIndex: 0, cursor: 'pointer' }}>
+          <CardHeader
+            title="Đỗ Thị Ngọc Mai"
+            subtitle="Toán"
+            avatar={icon_profile}
+            style={{ width: 600 }}
+            actAsExpander={true}
+          />
+          <CardMedia
+            mediaStyle={{ width: 600 }}
+            style={{ width: 600 }}
+          >
+            <img src={minions} />
 
-        </CardMedia >
-        <CardTitle title="Giúp e bài này với" subtitle="Phân tích nụ cười của Yao Ming" />
-        {this.state.router_detail && <Redirect to="/question-detail/id" />}
-        {/*<div onClick={() => this.setState({ showComment: !this.state.showComment })} style={{ padding: 16, cursor: 'pointer', color: 'gray', fontSize: 14 }}>Xem bình luận</div>*/}
-      </Card>
+          </CardMedia >
+          <CardTitle title="Giúp e bài này với" subtitle="Phân tích nụ cười của Yao Ming" />
+        </Card>
+      </Link>
+
+      // {this.state.router_detail && <Redirect to="/question-detail/id" /> }
+
     )
   }
 }
@@ -235,12 +206,24 @@ class Main extends Component {
       </div>
     )
   }
+  getAutoResponsiveProps() {
+    return {
+      itemMargin: 10,
+      containerWidth: this.state.containerWidth || document.body.clientWidth,
+      itemClassName: 'item',
+      gridWidth: 100,
+      transitionDuration: '.5'
+    };
+  }
   render() {
     return (
-      <div> {this.renderTab()}
+      // <AutoResponsive ref="container" {...this.getAutoResponsiveProps() }> 
+      <div>
+        {this.renderTab()}
         {!this.props.isLogin && <Redirect to="/login" />}
       </div>
-     
+      // </AutoResponsive >
+
 
       // <DetailItem />
     );

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
-
+import AutoResponsive from 'autoresponsive-react';
 
 import { CircularProgress } from 'material-ui';
 import ic_video from '../../images/ic_video.png';
@@ -17,7 +17,18 @@ export default class Document extends Component {
             learning: false
         }
     }
-
+    getAutoResponsiveProps() {
+        return {
+            horizontalDirection: 'top',
+            verticalDirection: 'left',
+            // itemMargin: this.state.itemMargin,
+            containerWidth: this.state.containerWidth || this.props.containerWidth,
+            itemClassName: 'item',
+            // containerHeight: this.state.containerHeight,
+            transitionDuration: '.8',
+            transitionTimingFunction: 'easeIn'
+        };
+    }
     render() {
         return (
             <div style={{ display: 'flex', flex: 1, flexDirection: 'column', width: '100%', alignItems: 'center', marginTop: 20 }}>
@@ -25,10 +36,12 @@ export default class Document extends Component {
                     <div style={{ display: 'flex', height: 220, flexDirection: 'row', border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3, width: 600 }}>
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <CircularProgress
+                                innerStyle={{ transform: 'rotate(-90deg)' }}
                                 mode="determinate"
-                                value={50}
+                                value={60}
                                 size={120}
-                                thickness={5}> 84</CircularProgress>
+                                thickness={5}> </CircularProgress>
+                            <text style={{ position: 'absolute', fontSize: 30 }}>60%</text>
                         </div>
                         <div style={{ display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column', width: '100%' }}>
                             <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column', width: '100%' }}>
@@ -59,10 +72,13 @@ export default class Document extends Component {
                     <div style={{ display: 'flex', height: 220, flexDirection: 'row', border: '1px solid rgb(172, 172, 172)', borderBottomWidth: 3, width: 600 }}>
                         <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                             <CircularProgress
+                                innerStyle={{ transform: 'rotate(-90deg)' }}
                                 mode="determinate"
-                                value={50}
+                                value={70}
                                 size={120}
-                                thickness={5}> 84</CircularProgress>
+                                thickness={5}></CircularProgress>
+
+                            <text style={{ position: 'absolute', fontSize: 30 }}>70%</text>
                         </div>
                         <div style={{ display: 'flex', flex: 2, alignItems: 'center', flexDirection: 'column', width: '100%' }}>
                             <div style={{ display: 'flex', flex: 3, justifyContent: 'center', alignItems: 'flex-start', flexDirection: 'column', width: '100%' }}>
@@ -101,8 +117,6 @@ export default class Document extends Component {
                             Go to 1ASK Plaza
                     </button></Link>
                 </div>
-                {/*{this.state.redirect && <Redirect to="/plaza" />}*/}
-                {/*{this.state.learning && <Redirect to="/lesson/1231" />}*/}
             </div >
         )
     }

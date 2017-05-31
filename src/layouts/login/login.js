@@ -35,9 +35,7 @@ class Login extends Component {
         if (!res.error) {
             const { dispatch } = this.props;
             dispatch(actionCreators.login(res));
-            console.log(res);
         }
-        // this.loginThirdParty('google', res.accessToken);
     }
     facebookLogin = (res) => {
         // axios.post('https://www.facebook.com/v2.9/dialog/oauth',
@@ -80,7 +78,7 @@ class Login extends Component {
             })
     }
     render() {
-        console.log(this.props.user)
+        // console.log(this.props.user)
         return (
             (this.props.user !== {} && this.props.isLogin) ?
                 <Redirect to="/" />
@@ -132,11 +130,11 @@ class Login extends Component {
                         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 30 }}>
                             <div>Tải ứng dụng</div>
                             <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 30 }}>
-                                <a href="https://play.google.com/store/apps/details?id=co.oneask">
+                                <a href="https://play.google.com/store/apps/details?id=co.oneask" target="_blank">
                                     <img src={googleplay} alt="" style={{ height: 40 }} />
                                 </a>
                                 <div style={{ width: 20 }}></div>
-                                <a href="https://itunes.apple.com/us/app/1ask-h%E1%BB%8Fi-%C4%91%C3%A1p-t%E1%BB%A9c-th%E1%BB%9Di/id1184580236?mt=8">
+                                <a href="https://itunes.apple.com/us/app/1ask-h%E1%BB%8Fi-%C4%91%C3%A1p-t%E1%BB%A9c-th%E1%BB%9Di/id1184580236?mt=8" target="_blank">
                                     <img src={appstore} alt="" style={{ height: 40 }} />
                                 </a>
                             </div>

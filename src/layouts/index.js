@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { BrowserRouter as Router, Route, Switch, hashHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, browersHistory } from 'react-router-dom';
 // import { } from 'react-router-dom';
 import Main from './main/main.js';
 import Document from './document/document.js';
@@ -12,17 +12,17 @@ import Person from './person/person';
 import Question from './question_detail/question_detail';
 import OneAskPlaza, { DetailItem } from './plaza/plaza.js';
 import Setting from './setting/setting.js';
-
+// import MapTest from './test/map';
+import SimplestSampleComponent from './test/auto_responsive'
 export default class App extends Component {
     render() {
         return (
-            <Router history={hashHistory}>
+            <Router history={browersHistory}>
                 <div>
                     <Nav />
                     <Switch>
-                        <Route exact path='/' component={Main} />
+                        <Route exact path='/' component={SimplestSampleComponent} />
                         <Route path='/login' component={Login} />
-                        <Route path='/document' component={Document} />
                         <Route path='/pathway' component={Document} />
                         <Route path='/person' component={Person} />
                         <Route path='/plaza' component={OneAskPlaza} />

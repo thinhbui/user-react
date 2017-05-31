@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import Modal from 'react-modal';
+import Dialog from 'material-ui/Dialog';
+
 import {
     ShareButtons,
 } from 'react-share';
@@ -62,6 +64,7 @@ export class Exam extends Component {
             seconds: 0,
             modalIsOpen: false,
             backtoLesson: false,
+            open: false,
             // router
         }
         this.time = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate(),
@@ -94,6 +97,9 @@ export class Exam extends Component {
             })
         }, 1000)
     }
+    handleClose = () => {
+        this.setState({ open: false });
+    };
     render() {
         return (
             <div style={{ display: 'flex', width: '100%', height: 800, alignItems: 'center', justifyContent: 'center', flexDirection: 'column', marginTop: 20 }}>
@@ -159,6 +165,33 @@ export class Exam extends Component {
                     </FacebookShareButton>
                     <button onClick={this.closeModal} style={{ cursor: 'pointer', backgroundColor: 'white', zIndex: 100, width: 400, color: 'rgb(0,178,185)', marginTop: 10, borderRadius: 25, height: 50, borderStyle: 'none', fontSize: 20 }}>Để sau</button>
                 </Modal>
+                {/*<Dialog
+                    modal={false}
+                    open={this.state.modalIsOpen}
+                    onRequestClose={this.handleClose}
+                >
+                    <img src={bg_ratting} style={{ width: 500, position: 'absolute' }} />
+                    <div style={{ color: 'rgb(171,44,73', zIndex: 100, fontWeight: 700, fontSize: 32, textShadow: '2px 0 0 #fff,-2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff' }}>Chúc mừng</div>
+                    <div style={{ color: 'rgb(210,44,48', zIndex: 100, fontWeight: 700, fontSize: 26, textShadow: '2px 0 0 #fff,-2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff' }}>Bạn đã vượt qua bài thi vượt rào </div>
+                    <div style={{ color: 'rgb(229,44,35', zIndex: 100, fontWeight: 700, fontSize: 26, textShadow: '2px 0 0 #fff,-2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff' }}> lộ trình</div>
+                    <div style={{ color: 'rgb(232,55,33', zIndex: 100, fontWeight: 700, fontSize: 32, textShadow: '2px 0 0 #fff,-2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff' }}>"3 Tuần để trở thành </div>
+                    <div style={{ color: 'rgb(230,88,34', zIndex: 100, fontWeight: 700, fontSize: 32, textShadow: '2px 0 0 #fff,-2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff' }}>cao thủ tích phân"</div>
+                    <div style={{ display: 'flex', flexDirection: 'row', marginTop: 20 }}>
+                        <img src={star2} style={{ zIndex: 100, width: 70, height: 70 }} />
+                        <img src={star2} style={{ zIndex: 100, width: 70, height: 70 }} />
+                        <img src={star1} style={{ zIndex: 100, width: 70, height: 70 }} />
+                    </div>
+                    <FacebookShareButton
+                        url='https://1ask.vn/'
+                        title='Vượt qua lộ trình abc'
+                        picture={`${String(window.location)}/${star1}`}
+                        // beforeOnClick={() => this.setState({ backtoLesson: true })}
+                        style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', cursor: 'pointer', backgroundColor: 'white', zIndex: 100, width: 400, color: 'rgb(0,178,185)', marginTop: 20, borderRadius: 25, height: 50, borderStyle: 'none', fontSize: 20 }} >
+                        Chia sẻ với Facebook
+                    </FacebookShareButton>
+                    <button onClick={this.closeModal} style={{ cursor: 'pointer', backgroundColor: 'white', zIndex: 100, width: 400, color: 'rgb(0,178,185)', marginTop: 10, borderRadius: 25, height: 50, borderStyle: 'none', fontSize: 20 }}>Để sau</button>
+
+                </Dialog>*/}
                 {this.state.backtoLesson && <Redirect to="/lesson/asda" />}
             </div >
         )
