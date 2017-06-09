@@ -91,5 +91,5 @@ export const reducer = (state = initialState, action) => {
             }
         }
     }
-    return state
+    return state;
 }
